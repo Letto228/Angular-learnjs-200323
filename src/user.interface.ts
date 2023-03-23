@@ -1,6 +1,3 @@
 export interface IUser {
-
-
-    readonly name: string;
-    
+	readonly name: string;
 }
