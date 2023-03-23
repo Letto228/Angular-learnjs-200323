@@ -4,4 +4,3 @@
 # npm run prettier:fix:all
 # git add .
 npx lint-staged
-npm run lint
