@@ -16,7 +16,7 @@ describe('AppComponent', () => {
 		expect(app).toBeTruthy();
 	});
 
-	it(`should have as title 'Angular-learnjs-200323'`, () => {
+	it('should have as title "Angular-learnjs-200323"', () => {
 		const fixture = TestBed.createComponent(AppComponent);
 		const app = fixture.componentInstance;
 		expect(app.title).toEqual('Angular-learnjs-200323');

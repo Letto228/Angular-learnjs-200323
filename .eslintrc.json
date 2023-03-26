@@ -37,7 +37,11 @@
 							"match": true
 						}
 					}
-				]
+				],
+				"no-duplicate-imports": "error",
+				"no-cond-assign": "error",
+				"semi": "error",
+				"quotes": ["error", "single", { "avoidEscape": true }]
 			}
 		},
 		{
