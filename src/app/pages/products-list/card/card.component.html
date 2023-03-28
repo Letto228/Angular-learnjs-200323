@@ -1,0 +1,34 @@
+<mat-card>
+	<mat-card-header>
+		<mat-card-title>{{ product.name }}</mat-card-title>
+		<mat-card-subtitle>Подкатегория: {{ product.subCategory }}</mat-card-subtitle>
+	</mat-card-header>
+	<img
+		mat-card-image
+		src="{{ product.images[0].url }}"
+		alt="Photo of a Product" />
+	<mat-card-content>
+		<p>Описание товара</p>
+		<p>
+			<span>Рейтинг: {{ product.rating }}</span>
+			<br />
+			<span>Количество отзывов: {{ product.feedbacksCount }}</span>
+		</p>
+		<p>
+			Цена:
+			<span>{{ product.price | currency }}</span>
+		</p>
+	</mat-card-content>
+	<mat-card-actions>
+		<button
+			mat-raised-button
+			color="primary"
+			(click)="clickBy($event, product._id)">
+			Купить
+		</button>
+	</mat-card-actions>
+	<mat-card-footer>
+		<small>{{ message }}</small>
+	</mat-card-footer>
+</mat-card>
+<!-- бегущая строка   <marquee behavior="scroll" width="400px" direction="right">{{message}}</marquee>-->
