@@ -9,3 +9,7 @@ export interface IProduct {
 	feedbacksCount: number;
 	rating: number;
 }
+
+export interface IProductList {
+  [index: number]: IProduct
+}
