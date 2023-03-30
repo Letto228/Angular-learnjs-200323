@@ -9,4 +9,9 @@ import {productMock} from 'src/app/shared/products/product.mock';
 })
 export class CardComponent {
 	readonly item: IProduct = productMock;
+
+	handleBuyClick(event: MouseEvent): void {
+		event.stopPropagation();
+		console.log('clicked');
+	}
 }
