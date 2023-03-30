@@ -4,6 +4,8 @@ export const productMock: IProduct = {
 	_id: '96-planset-dexp-ursus-s290-32-gb-3g-cernyj',
 	feedbacksCount: 2,
 	subCategory: 'planshety-elektronnye-knigi',
+	description:
+		'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, quam?',
 	images: [
 		{
 			url: 'https://c.dns-shop.ru/thumb/st1/fit/0/0/dff090e667cd39dd397678905df52de5/6c3e7aab802deb19513c7cf55dd7c527efb9127d8aba2ed90f3d224577137fe2.jpg',
