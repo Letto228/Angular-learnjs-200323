@@ -7,6 +7,7 @@ import {productMock} from 'src/app/shared/products/product.mock';
 	styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
+	stars: number[] = [1, 2, 3, 4, 5];
 	item = productMock;
 	addToCart($event: MouseEvent) {
 		$event.preventDefault();

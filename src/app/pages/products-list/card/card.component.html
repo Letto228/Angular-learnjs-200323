@@ -1,15 +1,18 @@
 <mat-card class="example-card">
-	<img mat-card-image src="{{ item.images[2].url }}" alt="Photo of a Shiba Inu" />
+	<img mat-card-image alt="Photo of a Shiba Inu" [src]="item.images[2].url" />
 	<mat-card-content>
 		<p class="card__price">{{ item.price }} ₽</p>
 		<p>
 			{{ item.name }}
 		</p>
 		<p class="card__rating-wr">
-			<mat-icon color="primary" aria-hidden="true" fontIcon="star"></mat-icon>
-			<mat-icon color="primary" aria-hidden="true" fontIcon="star"></mat-icon>
-			<mat-icon color="primary" aria-hidden="true" fontIcon="star"></mat-icon>
-			<mat-icon color="primary" aria-hidden="true" fontIcon="star"></mat-icon>
+			<span
+				*ngFor="let star of stars"
+				class="card__star"
+				[class.filled]="star < item.rating"
+			>
+				★
+			</span>
 			<span class="card__rating">{{ item.feedbacksCount }}</span>
 		</p>
 	</mat-card-content>
