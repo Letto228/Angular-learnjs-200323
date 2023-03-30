@@ -1,1 +1,16 @@
-<p>card works!</p>
+<mat-card class="example-card">
+	<mat-card-header>
+		<mat-card-title>{{ item.name }}</mat-card-title>
+	</mat-card-header>
+
+	<img mat-card-image alt="Photo of a Shiba Inu" [src]="item.images[0].url" />
+
+	<mat-card-content>
+		<p>
+			Цена:
+			<b>{{ item.price | currency : 'RUB' }}</b>
+		</p>
+	</mat-card-content>
+
+	<button mat-button color="primary">{{ 'buy' | uppercase }}</button>
+</mat-card>
