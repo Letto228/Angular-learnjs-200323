@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HeaderModule} from './core/header/header.module';
 import {ProductsListModule} from './pages/products-list/products-list.module';
+import {SidenavModule} from './core/sidenav/sidenav.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -15,6 +16,7 @@ import {ProductsListModule} from './pages/products-list/products-list.module';
 		BrowserAnimationsModule,
 		HeaderModule,
 		ProductsListModule,
+		SidenavModule,
 	],
 	bootstrap: [AppComponent],
 })

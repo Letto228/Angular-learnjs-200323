@@ -1,14 +1,20 @@
-<mat-toolbar color="primary">
+<mat-toolbar [color]="applicationConfig?.headerColorPalete">
+	<!-- <mat-toolbar
+	color="primary" 
+	[style.backgroundColor]="applicationConfig?.headerColor"
+> -->
 	<button
 		mat-icon-button
 		aria-label="Example icon-button with menu icon"
 		class="example-icon"
-		(click)="onClick($event)"
+		(click)="menuClick.emit('data form child')"
 	>
 		<mat-icon>menu</mat-icon>
 	</button>
-	<img class="shop-icon" [src]="" />
-	<span>My App</span>
+	<img class="shop-icon" [src]="applicationConfig?.shopIconSrc" />
+	<!-- <img class="shop-icon" [src]="applicationConfig && applicationConfig.shopIconSrc" /> -->
+	<!-- <img class="shop-icon" src="{{applicationConfig?.shopIconSrc}}" /> -->
+	<span>{{ applicationConfig?.title }}</span>
 	<span class="example-spacer"></span>
 	<button
 		mat-icon-button

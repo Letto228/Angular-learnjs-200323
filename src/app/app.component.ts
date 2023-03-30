@@ -9,13 +9,21 @@ import {applicationConfigMock} from './shared/application-config/application-con
 export class AppComponent {
 	readonly applicationConfig = applicationConfigMock;
 
-	onClick() {
-		console.log('Click AppComponent');
-	}
+	// isSidenavOpened = false;
 
-	onKeyDownEnter(event: any) {
-		console.log(event);
+	// onClick() {
+	// 	console.log('Click AppComponent');
+	// }
 
-		console.log('onKeyDown - Enter');
-	}
+	// onKeyDownEnter(event: any) {
+	// 	console.log(event);
+
+	// 	console.log('onKeyDown - Enter');
+	// }
+
+	// onMenuClick(event: string) {
+	// 	this.isSidenavOpened = !this.isSidenavOpened;
+
+	// 	console.log('menu click', event);
+	// }
 }

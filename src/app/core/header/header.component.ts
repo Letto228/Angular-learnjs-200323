@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {IApplicationConfig} from '../../shared/application-config/application-config.interface';
+import {ThemePalette} from '@angular/material/core';
 
 @Component({
 	selector: 'app-header',
@@ -6,6 +8,10 @@ import {Component} from '@angular/core';
 	styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+	@Input() applicationConfig: IApplicationConfig | undefined;
+
+	@Output() menuClick = new EventEmitter<string>();
+
 	onClick(event: MouseEvent) {
 		event.stopPropagation();
 
