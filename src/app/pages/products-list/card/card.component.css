@@ -1,0 +1,36 @@
+.example-card {
+	max-width: 300px;
+	margin: 10px;
+	box-shadow: 0 0 10px rgb(0, 0, 0, 0.15);
+	transition: 0.3s ease;
+}
+
+.example-card:hover {
+	box-shadow: 0 0 10px rgb(0, 0, 0, 0.25);
+	transform: scale(1.02);
+	cursor: pointer;
+}
+
+.example-header-image {
+	background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+	background-size: cover;
+}
+
+.card__price {
+	font-weight: 900;
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+.card__rating-wr {
+	position: relative;
+}
+
+.card__rating {
+	display: inline-block;
+	opacity: 0.5;
+	margin-left: 7px;
+	position: absolute;
+	top: 3px;
+	font-size: 16px;
+}

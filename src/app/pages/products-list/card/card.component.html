@@ -1,0 +1,21 @@
+<mat-card class="example-card">
+	<img mat-card-image src="{{ item.images[2].url }}" alt="Photo of a Shiba Inu" />
+	<mat-card-content>
+		<p class="card__price">{{ item.price }} ₽</p>
+		<p>
+			{{ item.name }}
+		</p>
+		<p class="card__rating-wr">
+			<mat-icon color="primary" aria-hidden="true" fontIcon="star"></mat-icon>
+			<mat-icon color="primary" aria-hidden="true" fontIcon="star"></mat-icon>
+			<mat-icon color="primary" aria-hidden="true" fontIcon="star"></mat-icon>
+			<mat-icon color="primary" aria-hidden="true" fontIcon="star"></mat-icon>
+			<span class="card__rating">{{ item.feedbacksCount }}</span>
+		</p>
+	</mat-card-content>
+	<mat-card-actions>
+		<button mat-raised-button color="primary" (click)="addToCart($event)">
+			В корзину
+		</button>
+	</mat-card-actions>
+</mat-card>
