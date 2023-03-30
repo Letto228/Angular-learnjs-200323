@@ -9,7 +9,7 @@
 			<span
 				*ngFor="let star of stars"
 				class="card__star"
-				[class.filled]="star < item.rating"
+				[class.filled]="star <= item.rating"
 			>
 				★
 			</span>
