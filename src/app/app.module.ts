@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HeaderModule} from './core/header/header.module';
 import {ProductsListModule} from './pages/products-list/products-list.module';
+import {SharedModule} from './shared/shared.module';
 
 // Components/Direcives
 // Pipe
@@ -24,6 +25,7 @@ import {ProductsListModule} from './pages/products-list/products-list.module';
 		BrowserAnimationsModule,
 		HeaderModule,
 		ProductsListModule,
+		SharedModule,
 	],
 	// providers: [],
 	exports: [AppComponent],
