@@ -7,15 +7,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HeaderModule} from './core/header/header.module';
 import {ProductsListModule} from './pages/products-list/products-list.module';
 
-// Components/Direcives
-// Pipe
-
-// Service
-
-// declarations ~ let/const
-// exports ~ module.exports = {...}
-// imports ~ import {...} from '...'
-
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
@@ -25,8 +16,6 @@ import {ProductsListModule} from './pages/products-list/products-list.module';
 		HeaderModule,
 		ProductsListModule,
 	],
-	// providers: [],
-	exports: [AppComponent],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
