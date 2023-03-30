@@ -1,14 +1,5 @@
-<app-header [applicationConfig]="applicationConfig"></app-header>
-<app-products-list></app-products-list>
-<!-- <app-sidenav #sidenavComponent></app-sidenav> -->
-<!-- <app-sidenav
-    #sidenavComponent
-    [(isOpened)]="isSidenavOpened"
-></app-sidenav> -->
-<!-- <app-sidenav
-    [isOpened]="isSidenavOpened"
-    (isOpenedChange)="isSidenavOpened = $event"
-></app-sidenav> -->
-
-<!-- (click)="onClick()" -> addEventListener('click', () => {onClick()}) -->
-<!-- (menuClick)="onMenuClick($event)" -> DOMELement.menuClick.subscribe($event => {onMenuClick($event)}) -->
+<app-header
+	[applicationConfig]="applicationConfig"
+	(menuClick)="sidenavComponent.toggleSidenavOpened()"
+></app-header>
+<app-sidenav #sidenavComponent></app-sidenav>
