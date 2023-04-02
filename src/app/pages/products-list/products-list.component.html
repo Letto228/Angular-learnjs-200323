@@ -1,2 +1,6 @@
-<app-card (click)="onClick()"></app-card>
+<app-card
+  (click)="onClick()"
+  (bayBtnClick)="bayHandler($event)"
+  [product]="product"
+></app-card>
 <h1>For card</h1>

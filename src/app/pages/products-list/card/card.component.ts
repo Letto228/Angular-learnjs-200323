@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {productMock} from '../../../shared/products/product.mock';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {IProduct} from '../../../shared/products/product.interface';
+import {IProductImage} from "../../../shared/products/product-image.interface";
 
 @Component({
 	selector: 'app-card',
@@ -7,7 +8,9 @@ import {productMock} from '../../../shared/products/product.mock';
 	styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
-	readonly product = productMock;
+	@Input() product: IProduct | undefined;
+
+  @Output() bayBtnClick = new EventEmitter<string>();
 
 	onProductBuy(event: Event) {
 		event.stopPropagation();
@@ -15,7 +18,11 @@ export class CardComponent {
 		console.log('Buy product');
 	}
 
+  getTitleImage():IProductImage | undefined {
+    return this.product?.images[0];
+  }
+
 	isStarActive(starIndex: number): boolean {
-		return this.product && this.product.rating >= starIndex;
+		return !!this.product && this.product.rating >= starIndex;
 	}
 }

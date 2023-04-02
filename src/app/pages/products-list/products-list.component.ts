@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {IProduct} from "../../shared/products/product.interface";
+import {productMock} from "../../shared/products/product.mock";
 
 @Component({
 	selector: 'app-products-list',
@@ -6,6 +8,12 @@ import {Component} from '@angular/core';
 	styleUrls: ['./products-list.component.css'],
 })
 export class ProductsListComponent {
+  product: IProduct = productMock;
+
+  bayHandler(id:string) {
+    console.log("bay product:", id);
+  }
+
 	onClick() {
 		console.log('Card host element click');
 	}
