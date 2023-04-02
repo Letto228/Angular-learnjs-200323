@@ -4,15 +4,6 @@
 	</mat-drawer>
 
 	<div #divElement class="example-sidenav-content">
-		<!-- <button type="button" mat-button (click)="drawerComponent.toggle(); isOpenedChange.emit(drawerComponent.opened)"> -->
-		<!-- selector: 'button[mat-button]' -->
-		<button
-			#matButtonComponent
-			type="button"
-			mat-button
-			(click)="toggleSidenavOpened()"
-		>
-			Toggle sidenav
-		</button>
+		<ng-content></ng-content>
 	</div>
 </mat-drawer-container>

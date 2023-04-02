@@ -4,4 +4,5 @@ export const applicationConfigMock: IApplicationConfig = {
 	title: 'Angular-learnjs-200323',
 	shopIconSrc: '../../../favicon.ico',
 	headerColorPalete: 'primary',
+	headerHeight: '64px',
 };

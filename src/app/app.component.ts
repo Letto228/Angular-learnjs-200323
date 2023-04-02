@@ -26,4 +26,5 @@ export class AppComponent {
 
 	// 	console.log('menu click', event);
 	// }
+	readonly sideNavHeight: string = `calc(100% - ${this.applicationConfig.headerHeight})`;
 }

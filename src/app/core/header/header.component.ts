@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {IApplicationConfig} from '../../shared/application-config/application-config.interface';
-import {ThemePalette} from '@angular/material/core';
 
 @Component({
 	selector: 'app-header',

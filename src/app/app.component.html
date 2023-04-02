@@ -2,8 +2,9 @@
 	[applicationConfig]="applicationConfig"
 	(menuClick)="sidenavComponent.toggleSidenavOpened()"
 ></app-header>
-<!-- <app-products-list></app-products-list> -->
-<app-sidenav #sidenavComponent></app-sidenav>
+<app-sidenav #sidenavComponent [style.height]="sideNavHeight">
+	<app-products-list></app-products-list>
+</app-sidenav>
 <!-- <app-sidenav
     #sidenavComponent
     [(isOpened)]="isSidenavOpened"
