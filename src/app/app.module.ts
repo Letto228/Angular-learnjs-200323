@@ -1,20 +1,11 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HeaderModule} from './core/header/header.module';
-import {ProductsListModule} from './pages/products-list/products-list.module';
-
-// Components/Direcives
-// Pipe
-
-// Service
-
-// declarations ~ let/const
-// exports ~ module.exports = {...}
-// imports ~ import {...} from '...'
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { HeaderModule } from './core/header/header.module'
+import { ProductsListModule } from './pages/products-list/products-list.module'
 
 @NgModule({
 	declarations: [AppComponent],
@@ -23,10 +14,10 @@ import {ProductsListModule} from './pages/products-list/products-list.module';
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		HeaderModule,
-		ProductsListModule,
+		ProductsListModule
 	],
 	// providers: [],
 	exports: [AppComponent],
-	bootstrap: [AppComponent],
+	bootstrap: [AppComponent]
 })
 export class AppModule {}

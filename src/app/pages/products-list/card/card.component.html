@@ -3,10 +3,22 @@
 		<mat-card-title>{{ product.name }}</mat-card-title>
 		<mat-card-subtitle>Подкатегория: {{ product.subCategory }}</mat-card-subtitle>
 	</mat-card-header>
-	<img
-		mat-card-image
-		src="{{ product.images[0].url }}"
-		alt="Photo of a Product" />
+	<div class="img-container">
+		<button
+			mat-icon-button
+			(click)="chevronClick('left')">
+			<mat-icon>chevron_left</mat-icon>
+		</button>
+		<img
+			mat-card-image
+			alt="Photo of a Product"
+			[src]="product.images[currentImageIndex].url" />
+		<button
+			mat-icon-button
+			(click)="chevronClick('right')">
+			<mat-icon>chevron_right</mat-icon>
+		</button>
+	</div>
 	<mat-card-content>
 		<p>Описание товара</p>
 		<p>
@@ -23,6 +35,7 @@
 		<button
 			mat-raised-button
 			color="primary"
+			class="btn-by"
 			(click)="clickBy($event, product._id)">
 			Купить
 		</button>
