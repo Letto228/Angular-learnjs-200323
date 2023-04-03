@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {IProduct} from 'src/app/shared/products/product.interface';
 
 @Component({
@@ -7,14 +7,8 @@ import {IProduct} from 'src/app/shared/products/product.interface';
 	styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
-	@Input()
-	product!: IProduct;
-
-	onProductBuy(event: Event) {
-		event.stopPropagation();
-
-		console.log('Buy product');
-	}
+	@Input() product!: IProduct;
+	@Output() buyProduct = new EventEmitter<string>();
 
 	isStarActive(starIndex: number): boolean {
 		return this.product && this.product.rating >= starIndex;

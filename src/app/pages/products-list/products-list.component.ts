@@ -10,7 +10,7 @@ import {productMock} from 'src/app/shared/products/product.mock';
 export class ProductsListComponent {
 	product: IProduct = productMock;
 
-	onClick() {
-		console.log('Card host element click');
+	logBuyedProduct() {
+		console.log('Купили');
 	}
 }
