@@ -1,0 +1,13 @@
+.product-list {
+	display: flex;
+	justify-content: space-around;
+}
+.example-card {
+	max-width: 400px;
+	margin: 20px;
+}
+
+.card-image {
+	height: 300px;
+	width: 350px;
+}
