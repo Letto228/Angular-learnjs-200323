@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HeaderModule} from './core/header/header.module';
 import {ProductsListModule} from './pages/products-list/products-list.module';
+import {CardModule} from './pages/products-list/card/card.module';
 
 // Components/Direcives
 // Pipe
@@ -23,6 +24,7 @@ import {ProductsListModule} from './pages/products-list/products-list.module';
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		HeaderModule,
+		CardModule,
 		ProductsListModule,
 	],
 	// providers: [],
