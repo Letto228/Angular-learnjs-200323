@@ -12,9 +12,7 @@ export class ProductsListComponent {
 	onClick() {
 		console.log('Card host element click');
 	}
-	onProductBuy([event, product]: [MouseEvent, IProduct]) {
-		event.stopPropagation();
-
+	onProductBuy(product: IProduct) {
 		console.log('Buy product: ', product.name);
 	}
 }

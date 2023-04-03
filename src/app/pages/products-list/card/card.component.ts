@@ -7,10 +7,13 @@ import {IProduct} from '../../../shared/products/product.interface';
 	styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
-	@Input() product!: IProduct;
-	@Output() productBuy = new EventEmitter<[MouseEvent, IProduct]>();
+	@Input() product: IProduct | undefined;
+	@Output() productBuy = new EventEmitter<IProduct>();
 
+	onBuyButtonClick(event: MouseEvent) {
+		event.stopPropagation();
+	}
 	isStarActive(starIndex: number): boolean {
-		return this.product && this.product.rating >= starIndex;
+		return this.product !== undefined && this.product.rating >= starIndex;
 	}
 }
