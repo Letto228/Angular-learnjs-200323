@@ -1,2 +1,21 @@
 <!-- <app-card (click)=""></app-card> -->
-<h1>For card</h1>
+<div class="product-list" (click)="clickDisable()">
+	<mat-card *ngFor="let item of items" class="example-card">
+		<mat-card-header>
+			<mat-card-title>{{ item.name }}</mat-card-title>
+		</mat-card-header>
+		<img
+			mat-card-image
+			src="{{ item.image }}"
+			alt="Photo of a Shiba Inu"
+			class="card-image"
+		/>
+		<mat-card-content>
+			<p>Ультрамодный телефон прошлого века</p>
+			<div>{{ item.price }}</div>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-raised-button color="accent">Купить</button>
+		</mat-card-actions>
+	</mat-card>
+</div>
