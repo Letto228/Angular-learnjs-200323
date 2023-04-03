@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {productMock} from '../../../shared/products/product.mock';
+import {Component, Input} from '@angular/core';
+import {IProduct} from 'src/app/shared/products/product.interface';
 
 @Component({
 	selector: 'app-card',
@@ -7,7 +7,8 @@ import {productMock} from '../../../shared/products/product.mock';
 	styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
-	readonly product = productMock;
+	@Input()
+	product!: IProduct;
 
 	onProductBuy(event: Event) {
 		event.stopPropagation();

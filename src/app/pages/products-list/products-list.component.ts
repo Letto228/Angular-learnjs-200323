@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {IProduct} from 'src/app/shared/products/product.interface';
+import {productMock} from 'src/app/shared/products/product.mock';
 
 @Component({
 	selector: 'app-products-list',
@@ -6,6 +8,8 @@ import {Component} from '@angular/core';
 	styleUrls: ['./products-list.component.css'],
 })
 export class ProductsListComponent {
+	product: IProduct = productMock;
+
 	onClick() {
 		console.log('Card host element click');
 	}
