@@ -7,5 +7,41 @@ import {applicationConfigMock} from './shared/application-config/application-con
 	styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-	readonly applicationConfig = applicationConfigMock;
+	applicationConfig = applicationConfigMock;
+	applicationConfig1 = applicationConfigMock;
+
+	isPopupOpened = false;
+
+	constructor() {
+		// setTimeout(() => {
+		// 	this.applicationConfig = {
+		// 		title: 'New Title',
+		// 		shopIconSrc: applicationConfigMock.shopIconSrc,
+		// 		headerColorPalete: applicationConfigMock.headerColorPalete,
+		// 	}
+		// }, 5000);
+		// setTimeout(() => {
+		// 	this.applicationConfig = {
+		// 		title: 'New Title',
+		// 		shopIconSrc: '',
+		// 		headerColorPalete: applicationConfigMock.headerColorPalete,
+		// 	}
+		// }, 6000);
+
+		setTimeout(() => {
+			this.isPopupOpened = true;
+		}, 3000);
+
+		setTimeout(() => {
+			this.isPopupOpened = false;
+		}, 6000);
+
+		setTimeout(() => {
+			this.isPopupOpened = true;
+		}, 9000);
+
+		setTimeout(() => {
+			this.isPopupOpened = false;
+		}, 12000);
+	}
 }
