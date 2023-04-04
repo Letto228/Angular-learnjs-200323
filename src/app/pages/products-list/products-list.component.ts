@@ -11,6 +11,6 @@ export class ProductsListComponent {
 	product: IProduct = productMock;
 
 	logBuyedProduct() {
-		console.log('Купили');
+		console.log('Купили', this.product._id);
 	}
 }

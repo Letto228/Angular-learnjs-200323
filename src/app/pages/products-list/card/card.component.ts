@@ -10,6 +10,11 @@ export class CardComponent {
 	@Input() product!: IProduct;
 	@Output() buyProduct = new EventEmitter<string>();
 
+	onProductBuy(event: Event) {
+		event.stopPropagation();
+		this.buyProduct.emit();
+	}
+
 	isStarActive(starIndex: number): boolean {
 		return this.product && this.product.rating >= starIndex;
 	}
