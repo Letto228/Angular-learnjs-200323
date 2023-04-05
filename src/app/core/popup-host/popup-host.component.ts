@@ -21,7 +21,7 @@ export class PopupHostComponent {
 	isHidden: Boolean = true;
 
 	ngOnChanges({template}: SimpleChanges) {
-		this.isHidden = !!template.previousValue;
+		this.isHidden = !template.currentValue;
 
 		if (this.isHidden) {
 			this.viewPortContainer.clear();
