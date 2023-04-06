@@ -10,7 +10,7 @@ import {productMock} from 'src/app/shared/products/product.mock';
 export class ProductsListComponent {
 	product: IProduct = productMock;
 
-	logBuyedProduct() {
-		console.log('Купили', this.product._id);
+	logBuyedProduct(event: string) {
+		console.log('Купили', event);
 	}
 }
