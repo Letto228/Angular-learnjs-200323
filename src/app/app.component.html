@@ -1,17 +1,10 @@
 <app-header
 	[applicationConfig]="applicationConfig"
-	[applicationConfig1]="applicationConfig1"
 	(menuClick)="sidenavComponent.toggleSidenavOpened()"
 >
 	<h1>Header</h1>
 </app-header>
-<!-- <app-sidenav
-    #sidenavComponent
-    [navigationTemplate]="navigationTemplate"
-> -->
 <app-sidenav #sidenavComponent>
-	<!-- <ng-template #navigationTemplate let-name="firstName"> -->
-	<!-- <ng-template #navigationTemplate> -->
 	<ng-container ngProjectAs="navigation">
 		{{ applicationConfig.title }}
 		<mat-list role="list">
@@ -23,16 +16,6 @@
 
 	<input />
 	<p>It works</p>
-	<!-- </ng-template> -->
 </app-sidenav>
 
-<app-popup-host [template]="isPopupOpened ? navigationTemplate : null"></app-popup-host>
-
-<ng-template #navigationTemplate>
-	{{ applicationConfig.title }}
-	<mat-list role="list">
-		<mat-list-item role="listitem">Item 1</mat-list-item>
-		<mat-list-item role="listitem">Item 2</mat-list-item>
-		<mat-list-item role="listitem">Item 3</mat-list-item>
-	</mat-list>
-</ng-template>
+<!-- <app-popup-host></app-popup-host> -->
