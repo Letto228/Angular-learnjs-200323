@@ -1,2 +1,5 @@
-<app-card (click)="onClick()"></app-card>
-<h1>For card</h1>
+<app-card
+	[cardConfig]="cardConfig"
+	(cardBuyClick)="onCardBuyClick()"
+	(click)="onClick()"
+></app-card>

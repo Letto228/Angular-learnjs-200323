@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {IApplicationConfig} from 'src/app/shared/application-config/application-config.interface';
 import {productMock} from '../../../shared/products/product.mock';
+import {IProduct} from '../../../shared/products/product.interface';
 
 @Component({
 	selector: 'app-card',
@@ -8,6 +10,9 @@ import {productMock} from '../../../shared/products/product.mock';
 })
 export class CardComponent {
 	readonly product = productMock;
+
+	@Input() cardConfig: IProduct | undefined;
+	@Output() cardBuyClick = new EventEmitter<Event>();
 
 	onProductBuy(event: Event) {
 		event.stopPropagation();
