@@ -2,6 +2,7 @@ import {
 	Component,
 	Input,
 	OnChanges,
+	SimpleChange,
 	SimpleChanges,
 	TemplateRef,
 	ViewChild,
@@ -20,16 +21,15 @@ export class PopupComponent implements OnChanges {
 	private readonly viewport!: ViewContainerRef;
 
 	ngOnChanges({template}: SimpleChanges): void {
-		if (template.currentValue) {
-			this.insertTemplate();
-		} else {
-			this.viewport.clear();
+		if (template) {
+			this.changeTemplate(!this.template);
 		}
 	}
-
-	insertTemplate() {
-		if (this.template) {
-			this.viewport.createEmbeddedView(this.template);
+	changeTemplate(clear: boolean) {
+		if (clear) {
+			this.viewport.clear();
+		} else {
+			this.viewport.createEmbeddedView(this.template as TemplateRef<any>);
 		}
 	}
 }
