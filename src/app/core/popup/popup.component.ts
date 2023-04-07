@@ -22,14 +22,14 @@ export class PopupComponent implements OnChanges {
 
 	ngOnChanges({template}: SimpleChanges): void {
 		if (template) {
-			this.changeTemplate(!this.template);
+			this.changeTemplate();
 		}
 	}
-	changeTemplate(clear: boolean) {
-		if (clear) {
+	changeTemplate() {
+		if (!this.template) {
 			this.viewport.clear();
 		} else {
-			this.viewport.createEmbeddedView(this.template as TemplateRef<any>);
+			this.viewport.createEmbeddedView(this.template);
 		}
 	}
 }
