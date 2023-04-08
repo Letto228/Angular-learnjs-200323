@@ -19,9 +19,7 @@ export class PopupHostComponent implements OnChanges {
 
 	@ViewChild('viewport', {static: true, read: ViewContainerRef})
 	private readonly viewport!: ViewContainerRef;
-
 	ngOnChanges({template}: SimpleChanges): void {
-		console.log(template);
 		if (template) {
 			this.viewport.clear();
 			this.viewport.createEmbeddedView(this.template as TemplateRef<any>);
