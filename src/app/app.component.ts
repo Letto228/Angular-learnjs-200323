@@ -10,7 +10,7 @@ export class AppComponent {
 	applicationConfig = applicationConfigMock;
 	applicationConfig1 = applicationConfigMock;
 
-	isPopupOpened = false;
+	isPopupOpened = true;
 
 	constructor() {
 		// setTimeout(() => {
@@ -30,18 +30,18 @@ export class AppComponent {
 
 		setTimeout(() => {
 			this.isPopupOpened = true;
+		}, 1000);
+
+		setTimeout(() => {
+			this.isPopupOpened = false;
+		}, 2000);
+
+		setTimeout(() => {
+			this.isPopupOpened = true;
 		}, 3000);
 
 		setTimeout(() => {
 			this.isPopupOpened = false;
-		}, 6000);
-
-		setTimeout(() => {
-			this.isPopupOpened = true;
-		}, 9000);
-
-		setTimeout(() => {
-			this.isPopupOpened = false;
-		}, 12000);
+		}, 4000);
 	}
 }
