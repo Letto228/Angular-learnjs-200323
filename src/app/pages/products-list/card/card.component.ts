@@ -21,16 +21,17 @@ export class CardComponent {
 		$event.stopPropagation();
 	}
 
-	chevronClick(chevron: string) {
+	chevronClick(direction: 'right' | 'left') {
 		event?.stopPropagation();
 		const imageCount = this.product?.images.length;
-		if (!imageCount) return;
-		if (chevron === 'right') {
-			this.imageIndex =
-				this.imageIndex === imageCount - 1 ? 0 : this.imageIndex + 1;
+		if (!imageCount) {
+			return;
+		}
+		const lastImage = imageCount - 1;
+		if (direction === 'right') {
+			this.imageIndex = this.imageIndex === lastImage ? 0 : this.imageIndex + 1;
 		} else {
-			this.imageIndex =
-				this.imageIndex === 0 ? imageCount - 1 : this.imageIndex - 1;
+			this.imageIndex = this.imageIndex === 0 ? lastImage : this.imageIndex - 1;
 		}
 	}
 
