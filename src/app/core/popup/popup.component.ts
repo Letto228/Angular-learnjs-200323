@@ -26,9 +26,8 @@ export class PopupComponent implements OnChanges {
 		}
 	}
 	changeTemplate() {
-		if (!this.template) {
-			this.viewport.clear();
-		} else {
+		this.viewport.clear();
+		if (this.template) {
 			this.viewport.createEmbeddedView(this.template);
 		}
 	}
