@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IProduct} from '../../shared/products/product.interface';
 import {productsMock} from '../../shared/products/products.mock';
+import {LoadDorection} from "../../shared/scroll-with-loading/scroll-with-loading.directive";
 
 @Component({
 	selector: 'app-products-list',
@@ -44,7 +45,7 @@ export class ProductsListComponent implements OnInit {
 	// })
 	// }
 
-	onLoad(event: 'before' | 'after') {
+	onLoad(event: LoadDorection) {
 		console.log(`load ${event}`);
 	}
 
