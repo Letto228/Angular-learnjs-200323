@@ -1,3 +1,7 @@
 <div class="popup-container" [style.display]="template ? 'flex' : 'none'">
 	<ng-container #viewport></ng-container>
 </div>
+
+<!--div class="popup-container" - этот див всё равно остаётся в дом дереве, да пустой!-->
+<!-- div['popup-container'].remove() ??? -->
+<!-- НО! VIEW я ж удаляю, что и требуется в задании, так? -->

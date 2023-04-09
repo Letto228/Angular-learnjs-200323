@@ -18,17 +18,18 @@ export class PopupHostComponent implements OnChanges {
 
 	@ViewChild('viewport', {static: true, read: ViewContainerRef})
 	private readonly viewport!: ViewContainerRef;
-	// Не пойму эту связку, как они связываются по имени, нет же??? Или это вообще не связка???
 
 	ngOnChanges({template}: SimpleChanges): void {
 		if (template) {
+			if (!template.currentValue) {
+				this.viewport.clear();
+			}
 			this.onChangePopupContent();
 		}
 	}
 
 	private onChangePopupContent() {
 		if (this.template) {
-			this.viewport.clear();
 			this.viewport.createEmbeddedView(this.template);
 		}
 	}
