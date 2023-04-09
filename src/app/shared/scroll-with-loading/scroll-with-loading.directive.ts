@@ -1,11 +1,6 @@
 import {Directive, ElementRef, EventEmitter, OnInit, Output} from '@angular/core';
 import {Observable, fromEvent, debounceTime} from 'rxjs';
 
-export interface Viewport {
-	width: number;
-	height: number;
-}
-
 export enum LoadDorection {
 	Top = 'Top',
 	Bottom = 'Bottom',
