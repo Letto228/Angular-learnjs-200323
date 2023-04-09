@@ -5,7 +5,7 @@
 
 	<!-- Заменить при выполнении ДЗ -->
 	<!-- <div appScrollWithLoading class="scroll-container" (loadData)="onLoad($event)"> -->
-	<div class="scroll-container">
+	<div appInfiniteScroll class="scroll-container" (loadData)="onLoad($event)">
 		{{ productsFromContext }}
 		<!-- {{productsFromContextImplicit}}
         {{nameFromContext}} -->
@@ -27,6 +27,71 @@
 		<app-card
 			class="card"
 			[product]="productsFromContext[3]"
+			(buy)="onBuy($event)"
+		></app-card>
+		<app-card
+			class="card"
+			[product]="productsFromContext[4]"
+			(buy)="onBuy($event)"
+		></app-card>
+		<app-card
+			class="card"
+			[product]="productsFromContext[4]"
+			(buy)="onBuy($event)"
+		></app-card>
+		<app-card
+			class="card"
+			[product]="productsFromContext[4]"
+			(buy)="onBuy($event)"
+		></app-card>
+		<app-card
+			class="card"
+			[product]="productsFromContext[4]"
+			(buy)="onBuy($event)"
+		></app-card>
+		<app-card
+			class="card"
+			[product]="productsFromContext[4]"
+			(buy)="onBuy($event)"
+		></app-card>
+		<app-card
+			class="card"
+			[product]="productsFromContext[4]"
+			(buy)="onBuy($event)"
+		></app-card>
+		<app-card
+			class="card"
+			[product]="productsFromContext[4]"
+			(buy)="onBuy($event)"
+		></app-card>
+		<app-card
+			class="card"
+			[product]="productsFromContext[4]"
+			(buy)="onBuy($event)"
+		></app-card>
+		<app-card
+			class="card"
+			[product]="productsFromContext[4]"
+			(buy)="onBuy($event)"
+		></app-card>
+		<app-card
+			class="card"
+			[product]="productsFromContext[4]"
+			(buy)="onBuy($event)"
+		></app-card>
+		<app-card
+			class="card"
+			[product]="productsFromContext[4]"
+			(buy)="onBuy($event)"
+		></app-card>
+		<app-card
+			class="card"
+			[product]="productsFromContext[4]"
+			(buy)="onBuy($event)"
+		></app-card>
+		<app-card
+			class="card"
+			[product]="productsFromContext[4]"
 			(buy)="onBuy($event)"
 		></app-card>
 		<app-card
