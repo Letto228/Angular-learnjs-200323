@@ -55,7 +55,7 @@ export class ProductsListComponent implements OnInit {
 		return this.products;
 	}
 
-	onBuy(id: IProduct['_id'] | undefined) {
+	onBuy(id: IProduct['_id']) {
 		console.log(`Buy product ${id}`);
 	}
 }
