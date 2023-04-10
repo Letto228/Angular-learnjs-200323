@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IProduct} from '../../shared/products/product.interface';
 import {productsMock} from '../../shared/products/products.mock';
+import {LoadDirection} from '../../shared/scroll-with-loading/load-direction.enum';
 
 @Component({
 	selector: 'app-products-list',
@@ -44,7 +45,7 @@ export class ProductsListComponent implements OnInit {
 	// })
 	// }
 
-	onLoad(event: 'before' | 'after') {
+	onLoad(event: LoadDirection) {
 		console.log(`load ${event}`);
 	}
 
@@ -54,7 +55,7 @@ export class ProductsListComponent implements OnInit {
 		return this.products;
 	}
 
-	onBuy(id: IProduct['_id']) {
+	onBuy(id: IProduct['_id'] | undefined) {
 		console.log(`Buy product ${id}`);
 	}
 }
