@@ -1,14 +1,5 @@
-<!-- <h1 appInsertShadow>Its card</h1> -->
-
-<ng-template let-productsFromContext [ngIf]="calculateProducts" [ngIfElse]="loader">
-	<!-- <ng-template [appDumpNgIf]="calculateProducts" let-productsFromContext> -->
-
-	<!-- Заменить при выполнении ДЗ -->
+<ng-template let-productsFromContext [ngIf]="products" [ngIfElse]="loader">
 	<div appScrollWithLoading class="scroll-container" (loadData)="onLoad($event)">
-	<!-- <div class="scroll-container"> -->
-		{{ productsFromContext }}
-		<!-- {{productsFromContextImplicit}}
-        {{nameFromContext}} -->
 		<app-card
 			class="card"
 			[product]="productsFromContext[0]"
@@ -40,10 +31,3 @@
 <ng-template #loader>
 	<mat-spinner class="loader"></mat-spinner>
 </ng-template>
-
-<!-- <ng-container #viewport></ng-container>
-
-<ng-template #additionalCards>
-    <app-card class="card" [product]="products?.[3]" (buy)="onBuy($event)"></app-card>
-    <app-card [class.warn]="true" class="card" [product]="products?.[4]" (buy)="onBuy($event)"></app-card>
-</ng-template> -->

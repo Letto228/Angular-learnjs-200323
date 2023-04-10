@@ -6,8 +6,6 @@ import {IDumpNgIfContext} from './dump-ng-if-context.interface';
 })
 export class DumpNgIfDirective<T> {
 	@Input() set appDumpNgIf(value: T | undefined | null) {
-		// console.log('set value', value);
-
 		const isContainerHasView = this.viewContainerRef.length;
 
 		if (value) {
@@ -15,14 +13,12 @@ export class DumpNgIfDirective<T> {
 			this.viewContainerRef.createEmbeddedView(this.templateRef, {
 				$implicit: value,
 			});
-			// console.log('create view');
 
 			return;
 		}
 
 		if (!value && isContainerHasView) {
 			this.viewContainerRef.clear();
-			// console.log('clear view');
 
 			return;
 		}

@@ -1,9 +1,7 @@
 <app-header
 	[applicationConfig]="applicationConfig"
 	(menuClick)="sidenavComponent.toggleSidenavOpened()"
->
-	<h1>Header</h1>
-</app-header>
+></app-header>
 <app-sidenav #sidenavComponent>
 	<ng-container ngProjectAs="navigation">
 		{{ applicationConfig.title }}
