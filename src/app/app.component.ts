@@ -9,6 +9,23 @@ import {applicationConfigMock} from './shared/application-config/application-con
 export class AppComponent {
 	readonly applicationConfig = applicationConfigMock;
 
+	isPopupOpened = false;
+
+	constructor() {
+		setTimeout(() => {
+			this.isPopupOpened = true;
+		}, 2000);
+		setTimeout(() => {
+			this.isPopupOpened = false;
+		}, 4000);
+		setTimeout(() => {
+			this.isPopupOpened = true;
+		}, 6000);
+		setTimeout(() => {
+			this.isPopupOpened = false;
+		}, 8000);
+	}
+
 	// isSidenavOpened = false;
 
 	// onClick() {

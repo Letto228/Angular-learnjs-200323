@@ -7,9 +7,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HeaderModule} from './core/header/header.module';
 import {ProductsListModule} from './pages/products-list/products-list.module';
 import {SidenavModule} from './core/sidenav/sidenav.module';
+import {PopupModule} from './popup/popup.module';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
 	declarations: [AppComponent],
+	bootstrap: [AppComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -17,7 +20,8 @@ import {SidenavModule} from './core/sidenav/sidenav.module';
 		HeaderModule,
 		ProductsListModule,
 		SidenavModule,
+		PopupModule,
+		MatListModule,
 	],
-	bootstrap: [AppComponent],
 })
 export class AppModule {}
