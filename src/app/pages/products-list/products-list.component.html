@@ -1,11 +1,35 @@
-<ng-template let-productsFromContext [ngIf]="products" [ngIfElse]="loader">
-	<div appScrollWithLoading class="scroll-container" (loadData)="onLoad($event)">
-		<app-card
-			class="card"
-			[product]="productsFromContext[0]"
-			(buy)="onBuy($event)"
-		></app-card>
-		<app-card
+<!-- <ng-template let-productsFromContext="$implicit" let-ngIfInputValue="ngIf" [ngIf]="products" [ngIfElse]="loader"> -->
+<div
+	*ngIf="products as ngIfInputValue; else loader; let productsFromContext = $implicit"
+	class="scroll-container"
+>
+	<!-- <ng-template
+			ngFor
+			[ngForOf]="productsFromContext"
+			[ngForTrackBy]="trackById"
+			let-product
+			let-productsFromNgForDirective="ngForOf"
+			let-index="index"
+		> -->
+	<!-- {{productsFromNgForDirective}}
+			{{index}} -->
+
+	<!-- Для применения пагинации. chank - массив отображаемых элементов -->
+	<!-- <ng-container *appPagination="let chank of productsFromContext; chankSize: 4"> -->
+	<app-card
+		*ngFor="
+			let product of ngIfInputValue as productsFromNgForDirective;
+			trackBy: trackById;
+			let index = index
+		"
+		class="card"
+		[product]="product"
+		(buy)="onBuy($event)"
+	></app-card>
+	<!-- </ng-container> -->
+
+	<!-- </ng-template> -->
+	<!-- <app-card
 			class="card"
 			[product]="productsFromContext[1]"
 			(buy)="onBuy($event)"
@@ -24,9 +48,9 @@
 			class="card"
 			[product]="productsFromContext[4]"
 			(buy)="onBuy($event)"
-		></app-card>
-	</div>
-</ng-template>
+		></app-card> -->
+</div>
+<!-- </ng-template> -->
 
 <ng-template #loader>
 	<mat-spinner class="loader"></mat-spinner>

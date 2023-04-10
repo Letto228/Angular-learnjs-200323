@@ -1,5 +1,7 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
+	HostBinding,
 	Input,
 	OnChanges,
 	SimpleChanges,
@@ -12,30 +14,36 @@ import {
 	selector: 'app-popup-host',
 	templateUrl: './popup-host.component.html',
 	styleUrls: ['./popup-host.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PopupHostComponent implements OnChanges {
+export class PopupHostComponent {
 	@Input() template: TemplateRef<unknown> | null = null;
 
-	@ViewChild('viewport', {read: ViewContainerRef, static: true})
-	private viewportViewContainer!: ViewContainerRef;
-
-	isViewportClear = true;
-
-	ngOnChanges({template}: SimpleChanges) {
-		if (template) {
-			this.updatePopupContent(this.template);
-		}
+	@HostBinding('class.empty')
+	get isEmpty(): boolean {
+		return !this.template;
 	}
 
-	private updatePopupContent(template: TemplateRef<unknown> | null) {
-		if (!this.isViewportClear) {
-			this.viewportViewContainer.clear();
-		}
+	// @ViewChild('viewport', {read: ViewContainerRef, static: true})
+	// private viewportViewContainer!: ViewContainerRef;
 
-		if (template) {
-			this.viewportViewContainer.createEmbeddedView(template);
-		}
+	// isViewportClear = true;
 
-		this.isViewportClear = !this.viewportViewContainer.length;
-	}
+	// ngOnChanges({template}: SimpleChanges) {
+	// 	if (template) {
+	// 		this.updatePopupContent(this.template);
+	// 	}
+	// }
+
+	// private updatePopupContent(template: TemplateRef<unknown> | null) {
+	// 	if (!this.isViewportClear) {
+	// 		this.viewportViewContainer.clear();
+	// 	}
+
+	// 	if (template) {
+	// 		this.viewportViewContainer.createEmbeddedView(template);
+	// 	}
+
+	// 	this.isViewportClear = !this.viewportViewContainer.length;
+	// }
 }
