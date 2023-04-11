@@ -17,6 +17,7 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.subInstance = this.scrollEvent$.subscribe(({target}: any) => {
+      console.log(target.scrollTop);
 			if (this.lastScrollTop > target.scrollTop) {
 				if (target.scrollTop <= ScrollDelta) {
 					this.loadData.emit(LoadDirection.Top);
@@ -30,7 +31,7 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
 				}
 			}
 
-			this.lastScrollTop = target.scrollTop <= 0 ? 0 : target.scrollTop;
+			this.lastScrollTop = target.scrollTop;
 		});
 	}
 
