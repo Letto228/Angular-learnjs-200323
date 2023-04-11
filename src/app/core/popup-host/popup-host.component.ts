@@ -21,16 +21,21 @@ export class PopupHostComponent implements OnChanges {
 
 	ngOnChanges({template}: SimpleChanges): void {
 		if (template) {
-			if (!template.currentValue) {
-				this.viewport.clear();
-			}
-			this.onChangePopupContent();
+			// Егор, поясните, пожалуйста, нужно ли передавать глобальную переменную, зачем/для чего?
+			this.onChangePopupContent(); // this.onChangePopupContent(this.template)
 		}
 	}
 
 	private onChangePopupContent() {
+		// private onChangePopupContent(template: TemplateRef<any>) | null
+
+		if (this.viewport.length) {
+			this.viewport.clear();
+		}
+
 		if (this.template) {
-			this.viewport.createEmbeddedView(this.template);
+			// template
+			this.viewport.createEmbeddedView(this.template); // template
 		}
 	}
 }
