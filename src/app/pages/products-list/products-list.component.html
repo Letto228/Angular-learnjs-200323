@@ -1,11 +1,11 @@
 <!-- <h1 appInsertShadow>Its card</h1> -->
 
 <ng-template let-productsFromContext [ngIf]="calculateProducts" [ngIfElse]="loader">
-	<!-- <ng-template [appDumpNgIf]="calculateProducts" let-productsFromContext> -->
+	<!-- <ng-template [appDumpNgIf]="calculateProducts" let-productsFromContext>  (loadData)="onLoad($event)"-->
 
 	<!-- Заменить при выполнении ДЗ -->
-	<!-- <div appScrollWithLoading class="scroll-container" (loadData)="onLoad($event)"> -->
-	<div class="scroll-container">
+	<div appScrollWithLoading class="scroll-container" (loadData)="onLoad($event)">
+		<!-- <div class="scroll-container"> -->
 		{{ productsFromContext }}
 		<!-- {{productsFromContextImplicit}}
         {{nameFromContext}} -->

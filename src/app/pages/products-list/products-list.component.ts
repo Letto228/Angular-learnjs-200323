@@ -1,13 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {IProduct} from '../../shared/products/product.interface';
 import {productsMock} from '../../shared/products/products.mock';
+
+enum LoadDirection {
+	Before = 'before',
+	After = 'after',
+}
 
 @Component({
 	selector: 'app-products-list',
 	templateUrl: './products-list.component.html',
 	styleUrls: ['./products-list.component.css'],
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent {
 	products: IProduct[] | undefined = undefined;
 
 	// @ViewChildren(CardComponent, {read: ViewContainerRef})
@@ -22,12 +27,12 @@ export class ProductsListComponent implements OnInit {
 	// @ViewChild('template', {static: true, read: TemplateRef})
 	// private readonly template!: TemplateRef<unknown>;
 
-	ngOnInit() {
+	OnInit() {
 		// console.log(this.cardsComponent);
 
 		setTimeout(() => {
 			this.products = productsMock;
-		}, 3000);
+		}, 1000);
 		// setTimeout(() => {
 		// 	this.products = undefined;
 		// }, 5000);
@@ -44,8 +49,8 @@ export class ProductsListComponent implements OnInit {
 	// })
 	// }
 
-	onLoad(event: 'before' | 'after') {
-		console.log(`load ${event}`);
+	onLoad(event: LoadDirection) {
+		console.log(`Загружаем куда: ${event}`);
 	}
 
 	get calculateProducts(): IProduct[] | undefined {
