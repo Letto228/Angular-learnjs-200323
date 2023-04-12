@@ -84,7 +84,7 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 			),
 			index: currentIndex,
 			appPaginationOf: this.appPaginationOf,
-      pages: [...Array(this.totalPages).keys()].map((index)=> index),
+      pages: [...Array(this.totalPages).keys()],
 			next: () => {
 				this.next();
 			},
