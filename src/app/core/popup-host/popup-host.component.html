@@ -1,5 +1,5 @@
-<ng-container #viewport>
-	<div class="wrapper">
+<div class="wrapper" [class.hidden]="isViewPortClear">
+	<ng-container #viewport>
 		<ng-content></ng-content>
-	</div>
-</ng-container>
+	</ng-container>
+</div>

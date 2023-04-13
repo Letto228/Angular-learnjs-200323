@@ -9,6 +9,8 @@
 	top: 0;
 	left: 0;
 	z-index: 1;
-	opacity: 0.8;
-	background-color: #000;
+}
+
+.hidden {
+	display: none;
 }

@@ -18,11 +18,25 @@ export class PopupHostComponent implements OnChanges {
 	template: TemplateRef<any> | null = null;
 
 	@ViewChild('viewport', {static: true, read: ViewContainerRef})
-	private readonly viewport!: ViewContainerRef;
+	private readonly _viewport!: ViewContainerRef;
+
+	isViewPortClear = true;
+
 	ngOnChanges({template}: SimpleChanges): void {
 		if (template) {
-			this.viewport.clear();
-			this.viewport.createEmbeddedView(this.template as TemplateRef<any>);
+			this._updatePopupContent(this.template);
 		}
+	}
+
+	private _updatePopupContent(template: TemplateRef<unknown> | null) {
+		if (!this.isViewPortClear) {
+			this._viewport.clear();
+		}
+
+		if (template) {
+			this._viewport.createEmbeddedView(template);
+		}
+
+		this.isViewPortClear = !this._viewport.length;
 	}
 }
