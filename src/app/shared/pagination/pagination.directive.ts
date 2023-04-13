@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import {IPaginationContext} from './pagination-context.interface';
 import {BehaviorSubject, Subject, filter, map, takeUntil} from 'rxjs';
+import {getGroupedItems} from './get-grouped-items';
 
 @Directive({
 	selector: '[appPagination]',
@@ -17,7 +18,9 @@ import {BehaviorSubject, Subject, filter, map, takeUntil} from 'rxjs';
 export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 	@Input() appPaginationOf: T[] | undefined | null;
 	// Количество элементов в чанке
-	// @Input() appPaginationChankSize: number = 4;
+	@Input() appPaginationChankSize = 4;
+
+	private chank: Array<T[]> = [];
 
 	private readonly currentIndex$ = new BehaviorSubject<number>(0);
 	private readonly destroy$ = new Subject<void>();
@@ -28,8 +31,18 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 	) {}
 
 	ngOnChanges({appPaginationOf}: SimpleChanges): void {
-		if (appPaginationOf) {
-			this.updateView();
+		if (appPaginationOf || this.appPaginationChankSize) {
+			if (!this.appPaginationOf?.length) {
+				this.viewContainerRef.clear();
+
+				return;
+			}
+
+			this.chank = getGroupedItems(
+				this.appPaginationOf,
+				this.appPaginationChankSize,
+			);
+			this.currentIndex$.next(0);
 		}
 	}
 
@@ -43,21 +56,10 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 		this.destroy$.complete();
 	}
 
-	private updateView() {
-		if (!this.appPaginationOf?.length) {
-			this.viewContainerRef.clear();
-
-			return;
-		}
-
-		this.currentIndex$.next(0);
-	}
-
 	private listenCurrentIndexChange() {
 		this.currentIndex$
 			.pipe(
-				map(currentIndex => this.getCurrentContext(currentIndex)),
-				filter(Boolean),
+				map(index => this.getCurrentContext(index, chank)),
 				takeUntil(this.destroy$),
 			)
 			.subscribe(context => {

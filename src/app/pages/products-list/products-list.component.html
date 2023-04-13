@@ -11,28 +11,24 @@
 			let-productsFromNgForDirective="ngForOf"
 			let-index="index"
 		> -->
-	<!-- {{productsFromNgForDirective}}
-			{{index}} -->
 
 	<!-- Для применения пагинации. chank - массив отображаемых элементов -->
 	<ng-container
 		*appPagination="
-			let chank of productsFromContext;
+			let chank of products;
 			chankSize: 4;
 			let next = next;
 			let back = back
 		"
 	>
-		<app-card
-			*ngFor="
-				let product of chank as productsFromNgForDirective;
-				trackBy: trackById;
-				let index = index
-			"
-			class="card"
-			[product]="product"
-			(buy)="onBuy($event)"
-		></app-card>
+		<div class="cards-container">
+			<app-card
+				*ngFor="let product of chank; trackBy: trackById; let index = index"
+				class="card"
+				[product]="product"
+				(buy)="onBuy($event)"
+			></app-card>
+		</div>
 		<button mat-icon-button (click)="back(); $event.stopPropagation()">
 			<mat-icon>chevron_left</mat-icon>
 		</button>

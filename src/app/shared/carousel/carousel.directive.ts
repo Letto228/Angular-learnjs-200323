@@ -53,7 +53,6 @@ export class CarouselDirective<T> implements OnInit, OnChanges, OnDestroy {
 	}
 
 	private listenCurrentIndexChange() {
-		console.log('123', this.currentIndex$);
 		this.currentIndex$
 			.pipe(
 				map(currentIndex => this.getCurrentContext(currentIndex)),
