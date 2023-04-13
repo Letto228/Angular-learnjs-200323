@@ -23,3 +23,30 @@
 .loader {
 	margin: auto;
 }
+
+.cards-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
+}
+
+.pagination-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.pagination__page-number {
+	cursor: pointer;
+}
+
+.pagination__page-number_active {
+	color: rgb(0, 13, 255);
+}
+
+.pagination__page-number-container {
+	display: flex;
+	overflow: auto;
+}
