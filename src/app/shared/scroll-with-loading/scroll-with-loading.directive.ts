@@ -9,7 +9,6 @@ const ScrollDelta = 100;
 })
 export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
   private subInstance: Subscription | undefined;
-	private root: HTMLElement;
 	private scrollEvent$: Observable<any>;
 	private lastScrollTop: number = 0;
 
@@ -17,7 +16,6 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.subInstance = this.scrollEvent$.subscribe(({target}: any) => {
-      console.log(target.scrollTop);
 			if (this.lastScrollTop > target.scrollTop) {
 				if (target.scrollTop <= ScrollDelta) {
 					this.loadData.emit(LoadDirection.Top);
@@ -40,7 +38,6 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
   }
 
 	constructor(element: ElementRef) {
-		this.root = element.nativeElement;
-		this.scrollEvent$ = fromEvent(this.root, 'scroll').pipe(debounceTime(250));
+		this.scrollEvent$ = fromEvent(element.nativeElement, 'scroll').pipe(debounceTime(250));
 	}
 }
