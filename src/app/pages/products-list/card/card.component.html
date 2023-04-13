@@ -1,7 +1,12 @@
 <mat-card class="card">
 	<mat-card-header>
-		<mat-card-title>{{ product?.name }}</mat-card-title>
-		<mat-card-subtitle>{{ product?.price }} $</mat-card-subtitle>
+		<mat-card-title>{{ product.name }}</mat-card-title>
+		<mat-card-subtitle>
+			{{ product.price | currency : 'USD' : 'symbol-narrow' : '1.0-0' }}
+		</mat-card-subtitle>
+		<!-- <mat-card-subtitle>{{product.price | currency : '$'}}</mat-card-subtitle> -->
+		<!-- CurrencyPipe.transform(product.price, '$') -->
+		<!-- <mat-card-subtitle>{{currency(product.price)}}</mat-card-subtitle> -->
 	</mat-card-header>
 	<div
 		*appCarousel="let img of product?.images; let next = next; let back = back"
@@ -16,7 +21,7 @@
 		</button>
 	</div>
 	<mat-card-content>
-		<p>Отзывы: {{ product?.feedbacksCount }}</p>
+		<p>Отзывы: {{ product.feedbacksCount }}</p>
 		<div class="raiting">
 			Рейтинг:
 			<mat-icon [class.star-active]="isStarActive(1)">star</mat-icon>

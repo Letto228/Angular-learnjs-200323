@@ -1,7 +1,39 @@
+<div *appDumpNgIf="check">
+	{{ check }}
+</div>
 <div
-	*ngIf="products as ngIfInputValue; else loader; let productsFromContext = $implicit"
+	*appDumpNgIf="
+		products$ | async as products;
+		else loader;
+		let productsFromContext = $implicit
+	"
 	class="scroll-container"
 >
+	<!-- easy -->
+	<!-- <ng-container
+		*appPagination="
+			let productsGroup of (products | productsFilter : name);
+			chankSize: 6;
+			let pageIndexes = pageIndexes;
+			let activeIndex = index;
+			let next = next;
+			let back = back;
+			let selectIndex = selectIndex
+		"
+	> -->
+
+	<!-- hard -->
+	<!-- <ng-container
+		*appPagination="
+			let productsGroup of (products | filterByPropety : propertyNameToFilter : searchProperty);
+			chankSize: 6;
+			let pageIndexes = pageIndexes;
+			let activeIndex = index;
+			let next = next;
+			let back = back;
+			let selectIndex = selectIndex
+		"
+	> -->
 	<ng-container
 		*appPagination="
 			let productsGroup of products;
@@ -19,6 +51,7 @@
 				class="card"
 				[product]="product"
 			></app-card>
+			<!-- {{productsGroup | json}} -->
 		</div>
 
 		<div class="pagination-container">

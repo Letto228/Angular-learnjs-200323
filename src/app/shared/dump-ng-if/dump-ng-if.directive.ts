@@ -12,6 +12,7 @@ export class DumpNgIfDirective<T> {
 			this.viewContainerRef.clear();
 			this.viewContainerRef.createEmbeddedView(this.templateRef, {
 				$implicit: value,
+				appDumpNgIf: value,
 			});
 
 			return;
@@ -28,4 +29,19 @@ export class DumpNgIfDirective<T> {
 		private readonly viewContainerRef: ViewContainerRef,
 		private readonly templateRef: TemplateRef<IDumpNgIfContext<T>>,
 	) {}
+
+	static ngTemplateContextGuard<T>(
+		_directive: DumpNgIfDirective<T>,
+		_context: unknown,
+	): _context is IDumpNgIfContext<T> {
+		return true;
+	}
+
+	// ngTemplateGuard_(input name)
+	static ngTemplateGuard_appDumpNgIf<T>(
+		_directive: DumpNgIfDirective<T>,
+		_inputValue: T | undefined | null,
+	): _inputValue is T {
+		return true;
+	}
 }
