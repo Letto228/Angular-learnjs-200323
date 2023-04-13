@@ -23,12 +23,12 @@ export class ProductsListComponent implements OnInit {
 		setTimeout(() => {
 			this.products = productsMock;
 			this.changeDetectorRef.markForCheck();
-		}, 3000);
+		}, 1000);
 
 		setTimeout(() => {
 			this.products = productsMock.map(item => ({...item, rating: 5}));
 			this.changeDetectorRef.markForCheck();
-		}, 6000);
+		}, 2000);
 	}
 
 	onLoad(event: LoadDirection) {

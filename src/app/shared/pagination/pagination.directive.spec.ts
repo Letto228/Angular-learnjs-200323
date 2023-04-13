@@ -1,8 +1,8 @@
-import {CarouselDirective} from './pagination.directive';
+import {PaginationDirective} from './pagination.directive';
 
-describe('CarouselDirective', () => {
+describe('PaginationDirective', () => {
 	it('should create an instance', () => {
-		const directive = new CarouselDirective();
+		const directive = new PaginationDirective();
 		expect(directive).toBeTruthy();
 	});
 });
