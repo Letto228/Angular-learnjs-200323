@@ -15,23 +15,28 @@ export class ScrollWithLoadingDirective {
 	@HostListener('scroll', ['$event.target'])
 	onScroll(element: HTMLElement) {
 		const scrollTop = element.scrollTop;
-		if (
+
+		const lastScrollCondition =
 			scrollTop > this.lastScrollTop &&
 			scrollTop + element.clientHeight >= element.scrollHeight - offset &&
-			element.scrollHeight !== this.lastScrollHeightOnAfter
-		) {
+			element.scrollHeight !== this.lastScrollHeightOnAfter;
+
+		if (lastScrollCondition) {
 			this.loadData.emit(LoadDirection.after);
 			this.lastScrollHeightOnAfter = element.scrollHeight;
+			this.lastScrollTop = scrollTop;
+			return;
 		}
 
-		if (
+		const lastScrollConditionTop =
 			scrollTop < this.lastScrollTop &&
 			scrollTop <= offset &&
-			element.scrollHeight !== this.lastScrollHeightOnBefore
-		) {
+			element.scrollHeight !== this.lastScrollHeightOnBefore;
+
+		if (lastScrollConditionTop) {
 			this.loadData.emit(LoadDirection.before);
 			this.lastScrollHeightOnBefore = element.scrollHeight;
 		}
-		this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+		this.lastScrollTop = scrollTop;
 	}
 }
