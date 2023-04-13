@@ -18,7 +18,6 @@ export class CarouselDirective<T> implements OnInit, OnChanges, OnDestroy {
 	@Input() appCarouselOf: T[] | undefined | null;
 
 	private readonly currentIndex$ = new BehaviorSubject<number>(0);
-	// private currentIndexChangeSubscription!: Subscription;
 	private readonly destroy$ = new Subject<void>();
 
 	constructor(
@@ -37,7 +36,6 @@ export class CarouselDirective<T> implements OnInit, OnChanges, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		// this.currentIndexChangeSubscription.unsubscribe();
 		this.destroy$.next();
 		this.destroy$.complete();
 	}
@@ -57,7 +55,6 @@ export class CarouselDirective<T> implements OnInit, OnChanges, OnDestroy {
 			.pipe(
 				map(currentIndex => this.getCurrentContext(currentIndex)),
 				filter(Boolean),
-				// filter(v => Boolean(v)),
 				takeUntil(this.destroy$),
 			)
 			.subscribe(context => {
@@ -76,7 +73,6 @@ export class CarouselDirective<T> implements OnInit, OnChanges, OnDestroy {
 			$implicit: this.appCarouselOf[currentIndex],
 			index: currentIndex,
 			appCarouselOf: this.appCarouselOf,
-			// next: this.next.bind(this),
 			next: () => {
 				this.next();
 			},

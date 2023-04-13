@@ -21,16 +21,6 @@ export class CardComponent {
 
 	@Output() buy = new EventEmitter<IProduct['_id']>();
 
-	// ngOnInit(): void {
-	// 	console.log('CardComponent Init');
-	// }
-
-	// ngOnChanges({product}: SimpleChanges): void {
-	// 	// if (product) {
-	// 	// 	console.log('CardComponent Changes', this.product?._id);
-	// 	// }
-	// }
-
 	onProductBuy(event: Event) {
 		event.stopPropagation();
 

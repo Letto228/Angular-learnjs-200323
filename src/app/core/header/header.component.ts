@@ -17,6 +17,4 @@ export class HeaderComponent {
 	@Input() applicationConfig: IApplicationConfig | undefined;
 
 	@Output() menuClick = new EventEmitter<void>();
-
-	log = console.log;
 }

@@ -1,20 +1,7 @@
-<!-- <ng-template let-productsFromContext="$implicit" let-ngIfInputValue="ngIf" [ngIf]="products" [ngIfElse]="loader"> -->
 <div
 	*ngIf="products as ngIfInputValue; else loader; let productsFromContext = $implicit"
 	class="scroll-container"
 >
-	<!-- <ng-template
-			ngFor
-			[ngForOf]="productsFromContext"
-			[ngForTrackBy]="trackById"
-			let-product
-			let-productsFromNgForDirective="ngForOf"
-			let-index="index"
-		> -->
-	<!-- {{productsFromNgForDirective}}
-			{{index}} -->
-
-	<!-- Для применения пагинации. chank - массив отображаемых элементов -->
 	<ng-container
 		*appPagination="
 			let productsGroup of products;
@@ -54,30 +41,7 @@
 			</button>
 		</div>
 	</ng-container>
-
-	<!-- </ng-template> -->
-	<!-- <app-card
-			class="card"
-			[product]="productsFromContext[1]"
-			(buy)="onBuy($event)"
-		></app-card>
-		<app-card
-			class="card"
-			[product]="productsFromContext[2]"
-			(buy)="onBuy($event)"
-		></app-card>
-		<app-card
-			class="card"
-			[product]="productsFromContext[3]"
-			(buy)="onBuy($event)"
-		></app-card>
-		<app-card
-			class="card"
-			[product]="productsFromContext[4]"
-			(buy)="onBuy($event)"
-		></app-card> -->
 </div>
-<!-- </ng-template> -->
 
 <ng-template #loader>
 	<mat-spinner class="loader"></mat-spinner>
