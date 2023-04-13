@@ -59,7 +59,7 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 	private listenCurrentIndexChange() {
 		this.currentIndex$
 			.pipe(
-				map(index => this.getCurrentContext(index, chank)),
+				map(index => this.getCurrentContext(index)),
 				takeUntil(this.destroy$),
 			)
 			.subscribe(context => {
