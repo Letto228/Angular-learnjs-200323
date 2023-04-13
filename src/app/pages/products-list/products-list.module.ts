@@ -6,6 +6,9 @@ import {InsertShadowModule} from '../../shared/insert-shadow/insert-shadow.modul
 import {DumpNgIfModule} from '../../shared/dump-ng-if/dump-ng-if.module';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {ScrollWithLoadingModule} from '../../shared/scroll-with-loading/scroll-with-loading.module';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {PaginationModule} from '../../shared/pagination/pagination.module';
 
 @NgModule({
 	declarations: [ProductsListComponent],
@@ -16,6 +19,9 @@ import {ScrollWithLoadingModule} from '../../shared/scroll-with-loading/scroll-w
 		DumpNgIfModule,
 		MatProgressSpinnerModule,
 		ScrollWithLoadingModule,
+		MatIconModule,
+		MatButtonModule,
+		PaginationModule,
 	],
 	exports: [ProductsListComponent],
 })
