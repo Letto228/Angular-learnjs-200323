@@ -2,6 +2,7 @@ import {
 	Directive,
 	Input,
 	OnChanges,
+	OnDestroy,
 	OnInit,
 	SimpleChanges,
 	TemplateRef,
@@ -14,7 +15,7 @@ import {IPaginationContext} from './pagination-context.interface';
 @Directive({
 	selector: '[appPagination]',
 })
-export class PaginationDirective<T> implements OnInit, OnChanges {
+export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 	@Input() appPaginationChankSize = 1;
 	@Input() appPaginationOf: T[] | undefined | null;
 
@@ -46,6 +47,11 @@ export class PaginationDirective<T> implements OnInit, OnChanges {
 
 	ngOnInit() {
 		this.listenCurrentIndexChange();
+	}
+
+	ngOnDestroy() {
+		this.destroy$.next();
+		this.destroy$.complete();
 	}
 
 	private listenCurrentIndexChange() {
