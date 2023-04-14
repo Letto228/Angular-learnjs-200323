@@ -16,12 +16,23 @@
 	<ng-container
 		*appPagination="
 			let chank of products;
-			chankSize: 4;
+			chankSize: 2;
 			let next = next;
-			let back = back
+			let back = back;
+			let index = index
 		"
 	>
 		<div class="cards-container">
+			<div class="pagination-container">
+				<button mat-icon-button (click)="back(); $event.stopPropagation()">
+					<mat-icon>chevron_left</mat-icon>
+				</button>
+				{{ index + 1 }}
+				<button mat-icon-button (click)="next(); $event.stopPropagation()">
+					<mat-icon>chevron_right</mat-icon>
+				</button>
+			</div>
+
 			<app-card
 				*ngFor="let product of chank; trackBy: trackById; let index = index"
 				class="card"
@@ -29,12 +40,6 @@
 				(buy)="onBuy($event)"
 			></app-card>
 		</div>
-		<button mat-icon-button (click)="back(); $event.stopPropagation()">
-			<mat-icon>chevron_left</mat-icon>
-		</button>
-		<button mat-icon-button (click)="next(); $event.stopPropagation()">
-			<mat-icon>chevron_right</mat-icon>
-		</button>
 	</ng-container>
 
 	<!-- </ng-template> -->

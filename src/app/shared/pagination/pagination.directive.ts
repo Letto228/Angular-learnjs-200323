@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {IPaginationContext} from './pagination-context.interface';
 import {BehaviorSubject, Subject, filter, map, takeUntil} from 'rxjs';
-import {getGroupedItems} from './get-grouped-items';
+import {getChank} from './get-grouped-items';
 
 @Directive({
 	selector: '[appPagination]',
@@ -18,7 +18,7 @@ import {getGroupedItems} from './get-grouped-items';
 export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 	@Input() appPaginationOf: T[] | undefined | null;
 	// Количество элементов в чанке
-	@Input() appPaginationChankSize = 4;
+	@Input() appPaginationChankSize = 1;
 
 	private chank: Array<T[]> = [];
 
@@ -30,18 +30,15 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 		private readonly templateRef: TemplateRef<IPaginationContext<T>>,
 	) {}
 
-	ngOnChanges({appPaginationOf}: SimpleChanges): void {
-		if (appPaginationOf || this.appPaginationChankSize) {
+	ngOnChanges({appPaginationOf, appPaginationChankSize}: SimpleChanges): void {
+		if (appPaginationOf || appPaginationChankSize) {
 			if (!this.appPaginationOf?.length) {
 				this.viewContainerRef.clear();
 
 				return;
 			}
 
-			this.chank = getGroupedItems(
-				this.appPaginationOf,
-				this.appPaginationChankSize,
-			);
+			this.chank = getChank(this.appPaginationOf, this.appPaginationChankSize);
 			this.currentIndex$.next(0);
 		}
 	}
@@ -59,7 +56,13 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 	private listenCurrentIndexChange() {
 		this.currentIndex$
 			.pipe(
-				map(index => this.getCurrentContext(index)),
+				map(index =>
+					this.getCurrentContext(
+						index,
+						this.chank,
+						this.appPaginationChankSize,
+					),
+				),
 				takeUntil(this.destroy$),
 			)
 			.subscribe(context => {
@@ -68,36 +71,63 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 			});
 	}
 
-	private getCurrentContext(currentIndex: number): IPaginationContext<T> | null {
-		if (!this.appPaginationOf) {
-			return null;
-		}
-
+	private getCurrentContext(
+		activeIndex: number,
+		items: Array<T[]>,
+		chankSize: number,
+	): IPaginationContext<T> {
 		return {
-			$implicit: this.appPaginationOf[currentIndex],
-			index: currentIndex,
-			appPaginationOf: this.appPaginationOf,
+			$implicit: items[activeIndex],
+			index: activeIndex,
+			chankSize: chankSize,
 			next: () => {
 				this.next();
 			},
 			back: () => {
 				this.back();
 			},
+			selectIndex: (index: number) => {
+				this.selectIndex(index);
+			},
 		};
 	}
 
 	private next() {
 		const nextIndex = this.currentIndex$.value + 1;
-		const newIndex = nextIndex < (this.appPaginationOf as T[]).length ? nextIndex : 0;
-
-		this.currentIndex$.next(newIndex);
+		const maxindex =
+			Math.round(
+				(this.appPaginationOf as T[]).length / this.appPaginationChankSize,
+			) - 1;
+		const newIndex = nextIndex <= maxindex ? nextIndex : maxindex;
+		if (this.currentIndex$.value == maxindex) {
+			console.log('Последняя');
+		} else this.currentIndex$.next(newIndex);
+		//console.log(maxindex);
 	}
 
 	private back() {
 		const previousIndex = this.currentIndex$.value - 1;
-		const newIndex =
-			previousIndex >= 0 ? previousIndex : (this.appPaginationOf as T[]).length - 1;
+		const newIndex = previousIndex >= 0 ? previousIndex : 0;
+		if (this.currentIndex$.value == 0) {
+			console.log('Первая');
+		} else this.currentIndex$.next(newIndex);
+	}
 
-		this.currentIndex$.next(newIndex);
+	private selectIndex(index: number) {
+		this.currentIndex$.next(index);
+	}
+
+	static ngTemplateContextGuard<T>(
+		_directive: PaginationDirective<T>,
+		_context: unknown,
+	): _context is IPaginationContext<T> {
+		return true;
+	}
+
+	static ngTemplateGuard_appPaginationOf<T>(
+		_directive: PaginationDirective<T>,
+		_inputValue: T[] | undefined | null,
+	): _inputValue is T[] {
+		return true;
 	}
 }

@@ -23,3 +23,13 @@
 .loader {
 	margin: auto;
 }
+
+.pagination-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.pagination-container button {
+	margin: 10px;
+}

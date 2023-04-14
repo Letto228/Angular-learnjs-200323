@@ -1,4 +1,4 @@
-export function getGroupedItems<T>(items: T[], elementsSize: number): Array<T[]> {
+export function getChank<T>(items: T[], elementsSize: number): Array<T[]> {
 	const paginationChanksLength = Math.ceil(items.length / elementsSize);
 
 	return Array.from({length: paginationChanksLength}).map((_, index) => {
