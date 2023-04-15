@@ -1,6 +1,7 @@
 <div *appDumpNgIf="check">
 	{{ check }}
 </div>
+
 <div
 	*appDumpNgIf="
 		products$ | async as products;
@@ -10,9 +11,9 @@
 	class="scroll-container"
 >
 	<!-- easy -->
-	<!-- <ng-container
+	<ng-container
 		*appPagination="
-			let productsGroup of (products | productsFilter : name);
+			let productsGroup of products | productsFilter : searchText;
 			chankSize: 6;
 			let pageIndexes = pageIndexes;
 			let activeIndex = index;
@@ -20,10 +21,9 @@
 			let back = back;
 			let selectIndex = selectIndex
 		"
-	> -->
-
-	<!-- hard -->
-	<!-- <ng-container
+	>
+		<!-- hard -->
+		<!-- <ng-container
 		*appPagination="
 			let productsGroup of (products | filterByPropety : propertyNameToFilter : searchProperty);
 			chankSize: 6;
@@ -34,7 +34,7 @@
 			let selectIndex = selectIndex
 		"
 	> -->
-	<ng-container
+		<!-- <ng-container
 		*appPagination="
 			let productsGroup of products;
 			chankSize: 6;
@@ -44,7 +44,8 @@
 			let back = back;
 			let selectIndex = selectIndex
 		"
-	>
+	> -->
+
 		<div class="cards-container">
 			<app-card
 				*ngFor="let product of productsGroup; trackBy: trackById"

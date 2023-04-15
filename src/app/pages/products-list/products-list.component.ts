@@ -23,19 +23,18 @@ export class ProductsListComponent implements OnInit {
 
 	check: string[] | null = null;
 
-	name = 'Пл';
+	searchText = 'мы'; //с "Пл" ничего не начинается!
 
 	propertyNameToFilter: keyof IProduct = 'feedbacksCount';
-	searchProperty = '2';
+	searchProperty = '1';
+	//cityName: any;
+	//queryString: any;
 
 	constructor(
 		// @Inject(ChangeDetectorRef) private readonly changeDetectorRef: ChangeDetectorRef,
 		// @Inject(ProductsStoreService) private readonly productsStoreService: ProductsStoreService,
-		private readonly productsStoreService: ProductsStoreService,
-	) // private readonly changeDetectorRef: ChangeDetectorRef
-	// @Inject('value') value: string,
-	// @Inject('service') service: [ProductsStoreService, string],
-	{
+		private readonly productsStoreService: ProductsStoreService, // private readonly changeDetectorRef: ChangeDetectorRef // @Inject('value') value: string, // @Inject('service') service: [ProductsStoreService, string],
+	) {
 		// console.log(value);
 		// console.log(service[0] === productsStoreService)
 		// console.log(service, productsStoreService)
