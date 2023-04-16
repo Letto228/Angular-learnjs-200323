@@ -1,14 +1,7 @@
 <div *appDumpNgIf="check">
 	{{ check }}
 </div>
-<div
-	*appDumpNgIf="
-		products$ | async as products;
-		else loader;
-		let productsFromContext = $implicit
-	"
-	class="scroll-container"
->
+<div *ngIf="products$ | async as products; else loader" class="scroll-container">
 	<!-- easy -->
 	<!-- <ng-container
 		*appPagination="
