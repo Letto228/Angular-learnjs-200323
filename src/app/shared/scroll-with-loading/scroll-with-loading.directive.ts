@@ -1,6 +1,7 @@
 import {Directive, EventEmitter, HostListener, Output} from '@angular/core';
 import {LoadDirection} from './load-direction.const';
-import {isScrollReachedBottomOffcet, isScrollReachedTopOffcet} from './utils';
+
+const offset = 100;
 
 @Directive({
 	selector: '[appScrollWithLoading]',
@@ -8,33 +9,28 @@ import {isScrollReachedBottomOffcet, isScrollReachedTopOffcet} from './utils';
 export class ScrollWithLoadingDirective {
 	@Output() loadData = new EventEmitter<LoadDirection>();
 
-	private prevScrollTop = -1;
+	private lastScrollTopPosition = 0;
 
 	@HostListener('scroll', ['$event.target'])
-	onScroll({scrollTop, clientHeight, scrollHeight}: HTMLElement) {
-		const prevScrollTop = this.prevScrollTop;
+	onScroll(element: HTMLElement) {
+		const scrollTopPosition = element.scrollTop;
 
-		this.prevScrollTop = scrollTop;
+		const loadDirection: LoadDirection =
+			scrollTopPosition > this.lastScrollTopPosition
+				? LoadDirection.After
+				: LoadDirection.Before;
 
-		const lowerScrollPosition = scrollHeight - clientHeight;
-		const shouldLoadMessagesDown = isScrollReachedBottomOffcet(
-			scrollTop,
-			lowerScrollPosition,
-			prevScrollTop,
-		);
-
-		if (shouldLoadMessagesDown) {
-			this.loadData.emit(LoadDirection.After);
-
-			return;
+		if (loadDirection == LoadDirection.After) {
+			const currentClientScrollHeight = element.clientHeight + element.scrollTop;
+			const elementHeightToScrollAfter = element.scrollHeight - offset;
+			if (currentClientScrollHeight > elementHeightToScrollAfter) {
+				this.loadData.emit(loadDirection);
+			}
+		} else {
+			if (element.scrollTop < offset) {
+				this.loadData.emit(loadDirection);
+			}
 		}
-
-		const shouldLoadMessagesTop = isScrollReachedTopOffcet(scrollTop, prevScrollTop);
-
-		if (shouldLoadMessagesTop) {
-			this.loadData.emit(LoadDirection.Before);
-
-			return;
-		}
+		this.lastScrollTopPosition = scrollTopPosition;
 	}
 }
