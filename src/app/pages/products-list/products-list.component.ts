@@ -23,7 +23,7 @@ export class ProductsListComponent implements OnInit {
 
 	check: string[] | null = null;
 
-	name = 'Пл';
+	name = 'Мышь';
 
 	propertyNameToFilter: keyof IProduct = 'feedbacksCount';
 	searchProperty = '2';
@@ -31,9 +31,8 @@ export class ProductsListComponent implements OnInit {
 	constructor(
 		// @Inject(ChangeDetectorRef) private readonly changeDetectorRef: ChangeDetectorRef,
 		// @Inject(ProductsStoreService) private readonly productsStoreService: ProductsStoreService,
-		private readonly productsStoreService: ProductsStoreService,
-	) // private readonly changeDetectorRef: ChangeDetectorRef
-	// @Inject('value') value: string,
+		private readonly productsStoreService: ProductsStoreService, // private readonly changeDetectorRef: ChangeDetectorRef
+	) // @Inject('value') value: string,
 	// @Inject('service') service: [ProductsStoreService, string],
 	{
 		// console.log(value);
