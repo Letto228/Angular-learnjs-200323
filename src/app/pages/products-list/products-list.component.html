@@ -3,54 +3,47 @@
 	*ngIf="products as ngIfInputValue; else loader; let productsFromContext = $implicit"
 	class="scroll-container"
 >
-	<!-- <ng-template
-			ngFor
-			[ngForOf]="productsFromContext"
-			[ngForTrackBy]="trackById"
-			let-product
-			let-productsFromNgForDirective="ngForOf"
-			let-index="index"
-		> -->
-	<!-- {{productsFromNgForDirective}}
-			{{index}} -->
-
-	<!-- Для применения пагинации. chank - массив отображаемых элементов -->
-	<!-- <ng-container *appPagination="let chank of productsFromContext; chankSize: 4"> -->
-	<app-card
-		*ngFor="
-			let product of ngIfInputValue as productsFromNgForDirective;
-			trackBy: trackById;
-			let index = index
+	<ng-container
+		*appPagination="
+			let chankProducts of productsFromContext;
+			chankSize: 4;
+			let pageIndexes = indexes;
+			let nextPage = next;
+			let backPage = back;
+			let onPage = onPage;
+			let currentPageIndex = index
 		"
-		class="card"
-		[product]="product"
-		(buy)="onBuy($event)"
-	></app-card>
-	<!-- </ng-container> -->
-
-	<!-- </ng-template> -->
-	<!-- <app-card
-			class="card"
-			[product]="productsFromContext[1]"
-			(buy)="onBuy($event)"
-		></app-card>
-		<app-card
-			class="card"
-			[product]="productsFromContext[2]"
-			(buy)="onBuy($event)"
-		></app-card>
-		<app-card
-			class="card"
-			[product]="productsFromContext[3]"
-			(buy)="onBuy($event)"
-		></app-card>
-		<app-card
-			class="card"
-			[product]="productsFromContext[4]"
-			(buy)="onBuy($event)"
-		></app-card> -->
+	>
+		<div class="cards-container">
+			<app-card
+				*ngFor="
+					let product of chankProducts;
+					trackBy: trackById;
+					let index = index
+				"
+				class="card"
+				[product]="product"
+				(buy)="onBuy($event)"
+			></app-card>
+		</div>
+		<div class="pagination-container">
+			<button mat-icon-button (click)="backPage(); $event.preventDefault()">
+				<mat-icon>chevron_left</mat-icon>
+			</button>
+			<button
+				*ngFor="let index of pageIndexes"
+				mat-icon-button
+				color="{{ currentPageIndex === index ? 'primary' : '' }}"
+				(click)="onPage(index); $event.preventDefault()"
+			>
+				{{ index + 1 }}
+			</button>
+			<button mat-icon-button (click)="nextPage(); $event.preventDefault()">
+				<mat-icon>chevron_right</mat-icon>
+			</button>
+		</div>
+	</ng-container>
 </div>
-<!-- </ng-template> -->
 
 <ng-template #loader>
 	<mat-spinner class="loader"></mat-spinner>

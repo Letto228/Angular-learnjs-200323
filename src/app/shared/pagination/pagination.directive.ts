@@ -17,7 +17,7 @@ import {BehaviorSubject, Subject, filter, map, takeUntil} from 'rxjs';
 export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 	@Input() appPaginationOf: T[] | undefined | null;
 	// Количество элементов в чанке
-	// @Input() appPaginationChankSize: number = 4;
+	@Input() appPaginationChankSize = 4;
 
 	private readonly currentIndex$ = new BehaviorSubject<number>(0);
 	private readonly destroy$ = new Subject<void>();
@@ -38,9 +38,30 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		// this.currentIndexChangeSubscription.unsubscribe();
 		this.destroy$.next();
 		this.destroy$.complete();
+	}
+
+	private get indexes() {
+		const pageIndexesArray: number[] = [];
+		if (this.appPaginationOf) {
+			for (
+				let index = 0;
+				index <
+				Math.ceil(this.appPaginationOf.length / this.appPaginationChankSize);
+				index++
+			) {
+				pageIndexesArray.push(index);
+			}
+		}
+		return pageIndexesArray;
+	}
+
+	private pageItems(currentIndex: number) {
+		return this.appPaginationOf?.slice(
+			currentIndex * this.appPaginationChankSize,
+			currentIndex * this.appPaginationChankSize + this.appPaginationChankSize,
+		) as T[];
 	}
 
 	private updateView() {
@@ -49,7 +70,6 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 
 			return;
 		}
-
 		this.currentIndex$.next(0);
 	}
 
@@ -72,8 +92,9 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 		}
 
 		return {
-			$implicit: this.appPaginationOf[currentIndex],
+			$implicit: this.pageItems(currentIndex),
 			index: currentIndex,
+			indexes: this.indexes,
 			appPaginationOf: this.appPaginationOf,
 			next: () => {
 				this.next();
@@ -81,21 +102,25 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 			back: () => {
 				this.back();
 			},
+			onPage: (index: number) => {
+				this.onPage(index);
+			},
 		};
 	}
 
 	private next() {
 		const nextIndex = this.currentIndex$.value + 1;
-		const newIndex = nextIndex < (this.appPaginationOf as T[]).length ? nextIndex : 0;
-
+		const newIndex = nextIndex < this.indexes.length ? nextIndex : 0;
 		this.currentIndex$.next(newIndex);
 	}
 
 	private back() {
 		const previousIndex = this.currentIndex$.value - 1;
-		const newIndex =
-			previousIndex >= 0 ? previousIndex : (this.appPaginationOf as T[]).length - 1;
-
+		const newIndex = previousIndex >= 0 ? previousIndex : this.indexes.length - 1;
 		this.currentIndex$.next(newIndex);
+	}
+
+	private onPage(index: number) {
+		this.currentIndex$.next(index);
 	}
 }
