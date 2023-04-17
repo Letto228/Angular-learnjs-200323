@@ -23,8 +23,4 @@ export class SidenavComponent {
 		this.drawerComponent.toggle();
 		this.changeDetectorRef.markForCheck();
 	}
-
-	// ngAfterViewChecked() {
-	// this.drawerComponent.toggle();
-	// }
 }

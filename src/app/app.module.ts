@@ -24,39 +24,7 @@ import {ProductsApiService} from './shared/products/products-api.service';
 		MatListModule,
 		PopupHostModule,
 	],
-	providers: [
-		// {
-		// 	provide: ProductsStoreService, // token
-		// 	useClass: ProductsStoreService, // new ProductsStoreService()
-		// },
-		ProductsApiService,
-		ProductsStoreService,
-		// {
-		// 	provide: 'value',
-		// 	useValue: 'is value',
-		// },
-		// {
-		// 	provide: 'service',
-		// 	useExisting: 'value',
-		// },
-		// {
-		// 	provide: 'service',
-		// 	useFactory: (productsStoreService: ProductsStoreService) => productsStoreService,
-		// 	deps: [ProductsStoreService],
-		// 	multi: true,
-		// },
-		{
-			provide: 'service',
-			useFactory: (productsApiService: ProductsApiService) =>
-				new ProductsStoreService(productsApiService),
-			deps: [ProductsApiService],
-		},
-		// {
-		// 	provide: 'service',
-		// 	useFactory: () => 'service',
-		// 	multi: true,
-		// }
-	],
+	providers: [ProductsApiService, ProductsStoreService],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

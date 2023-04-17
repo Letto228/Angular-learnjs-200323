@@ -1,6 +1,5 @@
 import {BehaviorSubject, Observable} from 'rxjs';
 import {IProduct} from './product.interface';
-import {productsMock} from './products.mock';
 import {ProductsApiService} from './products-api.service';
 import {Injectable} from '@angular/core';
 
@@ -18,8 +17,5 @@ export class ProductsStoreService {
 		this.productsApiService.getProducts$().subscribe(products => {
 			this.productsStore$.next(products);
 		});
-		// setTimeout(() => {
-		// 	this.productsStore$.next(productsMock);
-		// }, 2000);
 	}
 }

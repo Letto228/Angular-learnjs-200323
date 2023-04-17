@@ -37,7 +37,6 @@ export class DumpNgIfDirective<T> {
 		return true;
 	}
 
-	// ngTemplateGuard_(input name)
 	static ngTemplateGuard_appDumpNgIf<T>(
 		_directive: DumpNgIfDirective<T>,
 		_inputValue: T | undefined | null,

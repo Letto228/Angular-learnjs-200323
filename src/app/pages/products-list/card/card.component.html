@@ -4,9 +4,6 @@
 		<mat-card-subtitle>
 			{{ product.price | currency : 'USD' : 'symbol-narrow' : '1.0-0' }}
 		</mat-card-subtitle>
-		<!-- <mat-card-subtitle>{{product.price | currency : '$'}}</mat-card-subtitle> -->
-		<!-- CurrencyPipe.transform(product.price, '$') -->
-		<!-- <mat-card-subtitle>{{currency(product.price)}}</mat-card-subtitle> -->
 	</mat-card-header>
 	<div
 		*appCarousel="let img of product?.images; let next = next; let back = back"

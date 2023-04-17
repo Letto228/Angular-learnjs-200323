@@ -3,13 +3,9 @@ import {
 	Component,
 	EventEmitter,
 	Input,
-	OnChanges,
-	OnInit,
 	Output,
-	SimpleChanges,
 } from '@angular/core';
 import {IProduct} from '../../../shared/products/product.interface';
-import {currency} from '../../../shared/currency/currency';
 
 @Component({
 	selector: 'app-card',
@@ -21,12 +17,6 @@ export class CardComponent {
 	@Input() product!: IProduct;
 
 	@Output() buy = new EventEmitter<IProduct['_id']>();
-
-	// readonly currency = currency
-	// currency(price: number): string {
-	// 	console.log('currency from component');
-	// 	return currency(price)
-	// }
 
 	onProductBuy(event: Event) {
 		event.stopPropagation();

@@ -18,7 +18,7 @@ export class FilterByPropertyPipe implements PipeTransform {
 			const searchValueUpperCase = searchValue.toUpperCase();
 
 			return items.filter(item =>
-				(item[searchingProperty] as string) // Мы можем быть уверены, что это строка за счет строгой типизации и проверки searchValue
+				(item[searchingProperty] as string)
 					.toUpperCase()
 					.startsWith(searchValueUpperCase),
 			);
