@@ -11,6 +11,7 @@ import {MatListModule} from '@angular/material/list';
 import {PopupHostModule} from './core/popup-host/popup-host.module';
 import {ProductsStoreService} from './shared/products/products-store.service';
 import {ProductsApiService} from './shared/products/products-api.service';
+import {NotFoundModule} from './pages/not-found/not-found.module';
 
 @NgModule({
 	declarations: [AppComponent],

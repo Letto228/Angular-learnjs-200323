@@ -1,0 +1,34 @@
+<ng-container *ngIf="product$ | async as product; else spiner">
+	<div>
+		<div
+			*appCarousel="
+				product.images;
+				let currentImage;
+				let next = next;
+				let back = back
+			"
+			class="galerey"
+		>
+			<button mat-icon-button (click)="next()">
+				<mat-icon>chevron_left</mat-icon>
+			</button>
+			<img mat-card-image alt="Product photo" [src]="currentImage.url" />
+			<button mat-icon-button (click)="back()">
+				<mat-icon>chevron_right</mat-icon>
+			</button>
+		</div>
+	</div>
+	<div>
+		<h1>{{ product.name }}</h1>
+		<nav mat-tab-nav-bar>
+			<a mat-tab-link>description</a>
+			<a mat-tab-link>type</a>
+		</nav>
+
+		<!-- navigation -->
+	</div>
+</ng-container>
+
+<ng-template #spiner>
+	<mat-spinner class="spiner"></mat-spinner>
+</ng-template>
