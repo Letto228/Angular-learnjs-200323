@@ -6,11 +6,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTabsModule} from '@angular/material/tabs';
-import {DescriptionComponent} from './description/description.component';
-import {TypeComponent} from './type/type.component';
+import {TypeModule} from './type/type.module';
+import {DescriptionModule} from './description/description.module';
 
 @NgModule({
-	declarations: [ProductComponent, DescriptionComponent, TypeComponent],
+	declarations: [ProductComponent],
 	imports: [
 		CommonModule,
 		CarouselModule,
@@ -18,6 +18,8 @@ import {TypeComponent} from './type/type.component';
 		MatIconModule,
 		MatProgressSpinnerModule,
 		MatTabsModule,
+		TypeModule,
+		DescriptionModule,
 	],
 	exports: [ProductComponent],
 })

@@ -3,7 +3,9 @@ import {IProduct} from './product.interface';
 import {ProductsApiService} from './products-api.service';
 import {Injectable} from '@angular/core';
 
-@Injectable()
+@Injectable({
+	providedIn: 'root',
+})
 export class ProductsStoreService {
 	private readonly productsStore$ = new BehaviorSubject<IProduct[] | null>(null);
 

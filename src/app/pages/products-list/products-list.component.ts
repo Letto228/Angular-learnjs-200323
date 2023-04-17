@@ -1,4 +1,13 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	Host,
+	Inject,
+	OnInit,
+	Optional,
+	Self,
+	SkipSelf,
+} from '@angular/core';
 import {IProduct} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
 
@@ -7,11 +16,26 @@ import {ProductsStoreService} from '../../shared/products/products-store.service
 	templateUrl: './products-list.component.html',
 	styleUrls: ['./products-list.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	providers: [
+		{
+			provide: 'name',
+			useValue: 'ProductsListComponent',
+		},
+	],
 })
 export class ProductsListComponent implements OnInit {
 	readonly products$ = this.productsStoreService.products$;
 
-	constructor(private readonly productsStoreService: ProductsStoreService) {}
+	constructor(
+		private readonly productsStoreService: ProductsStoreService,
+		@Inject('name') @Optional() @Self() private readonly name: string,
+		@Inject('name') @Optional() @SkipSelf() private readonly parentName: string,
+		@Inject('name') @Optional() @Host() @SkipSelf() private readonly hostName: string,
+	) {
+		console.log(`Self: ${this.name}`);
+		console.log(`Host: ${this.hostName}`);
+		console.log(`SkipSelf: ${this.parentName}`);
+	}
 
 	ngOnInit() {
 		this.productsStoreService.loadProducts();

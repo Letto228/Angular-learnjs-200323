@@ -26,5 +26,11 @@ import {FilterByPropertyModule} from '../../shared/filter-by-property/filter-by-
 		FilterByPropertyModule,
 	],
 	exports: [ProductsListComponent],
+	// providers: [
+	// 	{
+	// 		provide: 'name',
+	// 		useValue: 'ProductsListModule',
+	// 	}
+	// ]
 })
 export class ProductsListModule {}
