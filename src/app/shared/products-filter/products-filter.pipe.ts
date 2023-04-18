@@ -5,8 +5,8 @@ import {IProduct} from '../products/product.interface';
 	name: 'filterByProperty',
 })
 export class ProductsFilterPipe implements PipeTransform {
-	transform(value: IProduct[], property: keyof IProduct, search: string): IProduct[] {
-		return value.filter((item: IProduct) => {
+	transform<T>(value: Array<T>, property: keyof T, search: string): Array<T> {
+		return value.filter((item: T) => {
 			switch (typeof item[property]) {
 				case 'string':
 					return String(item[property]).startsWith(search);
