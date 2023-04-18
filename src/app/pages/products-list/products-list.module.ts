@@ -9,6 +9,7 @@ import {ScrollWithLoadingModule} from '../../shared/scroll-with-loading/scroll-w
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {PaginationModule} from '../../shared/pagination/pagination.module';
+import {FilterByModule} from '../../shared/filter-by/filter-by.module';
 
 @NgModule({
 	declarations: [ProductsListComponent],
@@ -22,6 +23,7 @@ import {PaginationModule} from '../../shared/pagination/pagination.module';
 		MatIconModule,
 		MatButtonModule,
 		PaginationModule,
+		FilterByModule,
 	],
 	exports: [ProductsListComponent],
 })

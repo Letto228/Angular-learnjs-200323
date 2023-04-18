@@ -29,7 +29,8 @@
 	> -->
 	<ng-container
 		*appPagination="
-			let productsGroup of products;
+			let productsGroup of products
+				| filterBy : propertyNameToFilter : searchProperty;
 			chankSize: 6;
 			let pageIndexes = pageIndexes;
 			let activeIndex = index;
