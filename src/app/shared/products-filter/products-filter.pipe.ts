@@ -12,7 +12,7 @@ export class ProductsFilterPipe implements PipeTransform {
 				case 'number':
 					return item[property] === parseFloat(search as string);
 				case 'boolean':
-					return item[property] === (search === 'false' || !!search);
+					return item[property] === (search === 'false' ? false : !!search);
 				default:
 					return item[property] === search;
 			}
