@@ -8,13 +8,13 @@ export class ProductsFilterPipe implements PipeTransform {
 		return value.filter((item: T) => {
 			switch (typeof item[property]) {
 				case 'string':
-					return String(item[property]).startsWith(search);
+					return String(item[property]).startsWith(search as string);
 				case 'number':
-					return item[property] === parseFloat(search);
-        case 'boolean':
-          return item[property] === (search === 'true' || false)
+					return item[property] === search;
+				case 'boolean':
+					return item[property] === (search === 'false' || true);
 				default:
-					return item[property] == search;
+					return item[property] === search;
 			}
 		});
 	}
