@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {IProduct} from 'src/app/shared/products/product.interface';
 import {productMock} from 'src/app/shared/products/product.mock';
 
 @Component({
@@ -8,9 +9,7 @@ import {productMock} from 'src/app/shared/products/product.mock';
 })
 export class ProductsListComponent {
 	readonly cardConfig = productMock;
-	onClick() {
-		console.log('Card host element click');
-	}
+
 	onCardBuyClick() {
 		console.log('Вторая Жмкалка на купить');
 	}
