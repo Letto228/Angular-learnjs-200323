@@ -10,7 +10,7 @@ export class ProductsFilterPipe implements PipeTransform {
 				case 'string':
 					return String(item[property]).startsWith(search as string);
 				case 'number':
-					return item[property] === search;
+					return item[property] === parseFloat(search);
 				case 'boolean':
 					return item[property] === (search === 'false' || true);
 				default:
