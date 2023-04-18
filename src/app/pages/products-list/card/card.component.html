@@ -4,21 +4,16 @@
 		<mat-card-subtitle>{{ product.price }} $</mat-card-subtitle>
 	</mat-card-header>
 	<mat-card-actions class="card">
-		<button mat-fab extended color="accent" (click)="onClick()">
+		<button mat-fab extended color="accent" (click)="onClick($event)">
 			<mat-icon>favorite</mat-icon>
 			Купить ЭТО
 		</button>
 	</mat-card-actions>
-	<img
-		mat-card-image
-		src="{{ product.images[0].url }}"
-		alt="{{ product.subCategory }}"
-	/>
+	<img mat-card-image alt="{{ product.subCategory }}" [src]="product.images[0].url" />
 	<mat-card-content>
 		<br />
 		<p>
-			hd j cfgy ncn cghm gjcm cgj hg ngn mcg mncgm cgu mcg mcgcg mcgum cghmcg mguc c
-			gum cgu mcgu mgucm cgum cgu mcgumcg mcgu
+			{{ product.text }}
 		</p>
 	</mat-card-content>
 </mat-card>

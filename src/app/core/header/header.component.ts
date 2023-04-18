@@ -18,7 +18,6 @@ export class HeaderComponent {
 
 	onClick(event: MouseEvent) {
 		event.stopPropagation();
-
 		console.log('Click', event);
 	}
 }
