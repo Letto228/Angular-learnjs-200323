@@ -8,9 +8,9 @@ import {productMock} from 'src/app/shared/products/product.mock';
 	styleUrls: ['./products-list.component.css'],
 })
 export class ProductsListComponent {
-	readonly cardConfig = productMock;
+	readonly prod = productMock;
 
-	onCardBuyClick() {
-		console.log('Вторая Жмкалка на купить');
+	onCardBuyClick(id: IProduct['_id']) {
+		console.log('Вторая Жмкалка на купить', id);
 	}
 }

@@ -1,19 +1,19 @@
 <mat-card class="card">
 	<mat-card-header>
-		<mat-card-title>{{ cardConfig?.name }}</mat-card-title>
-		<mat-card-subtitle>{{ cardConfig?.price }} $</mat-card-subtitle>
+		<mat-card-title>{{ prod?.name }}</mat-card-title>
+		<mat-card-subtitle>{{ prod?.price }} $</mat-card-subtitle>
 	</mat-card-header>
 	<div class="galerey">
 		<button mat-icon-button disabled>
 			<mat-icon>chevron_left</mat-icon>
 		</button>
-		<img mat-card-image alt="Product photo" [src]="cardConfig?.images?.[0]?.url" />
+		<img mat-card-image alt="Product photo" [src]="prod?.images?.[0]?.url" />
 		<button mat-icon-button disabled>
 			<mat-icon>chevron_right</mat-icon>
 		</button>
 	</div>
 	<mat-card-content>
-		<p>Отзывы: {{ cardConfig?.feedbacksCount }}</p>
+		<p>Отзывы: {{ prod?.feedbacksCount }}</p>
 		<div class="raiting">
 			Рейтинг:
 			<mat-icon [class.star-active]="isStarActive(1)">star</mat-icon>
@@ -25,6 +25,5 @@
 	</mat-card-content>
 	<mat-card-actions class="mat-card-actions-align-end">
 		<button mat-button (click)="onProductBuy($event)">Buy</button>
-		<!-- <button mat-button (click)="cardBuyClick.emit()">Buy 2</button> -->
 	</mat-card-actions>
 </mat-card>
