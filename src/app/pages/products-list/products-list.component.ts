@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IProduct} from '../../shared/products/product.interface';
 import {productsMock} from '../../shared/products/products.mock';
-import {LoadDirection} from 'src/app/shared/infinite-scroll/infinite-scroll.directive';
+import {LoadDirection} from 'src/app/shared/infinite-scroll/infinite-scroll.enum';
 
 @Component({
 	selector: 'app-products-list',

@@ -1,9 +1,6 @@
 import {Directive, EventEmitter, HostListener, Output} from '@angular/core';
-
-export enum LoadDirection {
-	TOP = 'top',
-	BOTTOM = 'bottom',
-}
+import {LoadDirection} from './infinite-scroll.enum';
+let previouScroll = 0;
 
 @Directive({
 	selector: '[appInfiniteScroll]',
@@ -13,15 +10,16 @@ export class InfiniteScrollDirective {
 
 	@HostListener('scroll', ['$event.target'])
 	onScroll(target: HTMLElement) {
-		const scrollTop = target?.scrollTop;
-		const windowHeight = window.innerHeight;
-		const scrollHeight = target?.scrollHeight;
-		const borderBottomOffset = scrollHeight - (scrollTop + windowHeight);
+		const scrollTop = target.scrollTop;
+		const clientHeight = target.clientHeight;
+		const scrollHeight = target.scrollHeight;
+		const borderBottomOffset = scrollHeight - (scrollTop + clientHeight);
 
-		if (scrollTop < 100) {
-			this.loadData.emit(LoadDirection.TOP);
-		} else if (borderBottomOffset < 100) {
+		if (scrollTop >= previouScroll && borderBottomOffset < 100) {
 			this.loadData.emit(LoadDirection.BOTTOM);
+		} else if (scrollTop < previouScroll && scrollTop < 100) {
+			this.loadData.emit(LoadDirection.TOP);
 		}
+		previouScroll = scrollTop;
 	}
 }
