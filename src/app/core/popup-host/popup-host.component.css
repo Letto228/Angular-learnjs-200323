@@ -1,0 +1,10 @@
+:host {
+	position: absolute;
+	top: 20%;
+	z-index: 2;
+	background: rgb(255, 255, 255);
+	left: calc(50% - 110px);
+	width: 200px;
+	border: 2px solid blueviolet;
+	padding: 10px;
+}

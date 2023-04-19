@@ -23,16 +23,19 @@ export class PopupHostComponent {
 	isViewportClear = true;
 	ngOnChanges({template}: SimpleChanges) {
 		if (template) {
-			if (template.currentValue) {
-				this.viewportViewContainer.createEmbeddedView(template.currentValue);
-				console.log('Открыли', this.viewportViewContainer.length);
-			}
 			if (!this.isViewportClear) {
 				this.viewportViewContainer.clear();
 				console.log('Закрыли', this.viewportViewContainer.length);
 			}
-			if (this.viewportViewContainer.length != 0) this.isViewportClear = false;
-			else this.isViewportClear = true;
+
+			if (template.currentValue) {
+				this.viewportViewContainer.createEmbeddedView(template.currentValue);
+				console.log('Открыли', this.viewportViewContainer.length);
+			}
+
+			// if (this.viewportViewContainer.length != 0) this.isViewportClear = false;
+			// else this.isViewportClear = true;
+			this.isViewportClear = this.viewportViewContainer.length === 0;
 		}
 	}
 }
