@@ -23,7 +23,6 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 	private readonly currentIndex$ = new BehaviorSubject<number>(0);
 	private readonly destroy$ = new Subject<void>();
 	private pageIndexes: number[] = [];
-	private buttonActiveColorValue: ThemePalette = 'primary';
 
 	constructor(
 		private readonly viewContainerRef: ViewContainerRef,
@@ -44,8 +43,9 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 		}
 	}
 
-	updateIndexes() {
+	private updateIndexes() {
 		this.pageIndexes = this.indexes;
+		// this.currentIndex$.next(0);
 	}
 
 	ngOnInit(): void {
@@ -77,10 +77,9 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 	private updateView() {
 		if (!this.appPaginationOf?.length) {
 			this.viewContainerRef.clear();
-
 			return;
 		}
-		this.currentIndex$.next(0);
+		// this.currentIndex$.next(0);
 	}
 
 	private listenCurrentIndexChange() {
@@ -105,7 +104,6 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 			index: currentIndex,
 			indexes: this.pageIndexes,
 			appPaginationOf: this.appPaginationOf,
-			buttonActiveColorValue: this.buttonActiveColorValue,
 			next: () => {
 				this.next();
 			},

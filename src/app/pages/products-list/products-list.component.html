@@ -11,8 +11,7 @@
 			let nextPage = next;
 			let backPage = back;
 			let onPage = onPage;
-			let currentPageIndex = index;
-			let buttonActiveColorValue = buttonActiveColorValue
+			let currentPageIndex = index
 		"
 	>
 		<div class="cards-container">
@@ -34,7 +33,7 @@
 			<button
 				*ngFor="let index of pageIndexes"
 				mat-icon-button
-				[color]="currentPageIndex === index ? buttonActiveColorValue : null"
+				[color]="currentPageIndex === index ? 'primary' : null"
 				(click)="onPage(index)"
 			>
 				{{ index + 1 }}
