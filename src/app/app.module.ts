@@ -24,6 +24,7 @@ import {BaseUrlInterceptor} from './shared/base-url/base-url.interceptor';
 		HttpClientModule,
 	],
 	providers: [
+		// ...SidenavModule.providers,
 		{
 			provide: 'name',
 			useValue: 'AppModule',
@@ -38,6 +39,8 @@ import {BaseUrlInterceptor} from './shared/base-url/base-url.interceptor';
 })
 export class AppModule {}
 
+// ModuleInjectors
+
 // NullInjector
 
 // |
@@ -50,7 +53,11 @@ export class AppModule {}
 
 // |												|
 
-// AppCoponentElementingector						...
+// ProductsListModuleInjector						...
+
+// ElementInjectors
+
+// AppCoponentElementIngector
 
 // |									\
 

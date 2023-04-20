@@ -15,12 +15,6 @@ export class BaseUrlInterceptor implements HttpInterceptor {
 			url: this.baseUrl + request.url,
 		});
 
-		console.log(request);
-
-		return next.handle(patchRequest).pipe(
-			tap(() => {
-				console.log('BaseUrlInterceptor');
-			}),
-		);
+		return next.handle(patchRequest);
 	}
 }

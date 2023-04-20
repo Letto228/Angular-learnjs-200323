@@ -10,6 +10,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {PaginationModule} from '../../shared/pagination/pagination.module';
 import {FilterByPropertyModule} from '../../shared/filter-by-property/filter-by-property.module';
+import {RouterModule} from '@angular/router';
+import {ProductsListRoutingModule} from './products-list-routing.module';
 
 @NgModule({
 	declarations: [ProductsListComponent],
@@ -24,7 +26,15 @@ import {FilterByPropertyModule} from '../../shared/filter-by-property/filter-by-
 		MatButtonModule,
 		PaginationModule,
 		FilterByPropertyModule,
+		RouterModule,
+		ProductsListRoutingModule,
 	],
 	exports: [ProductsListComponent],
+	providers: [
+		{
+			provide: 'name',
+			useValue: 'ProductsListModule',
+		},
+	],
 })
 export class ProductsListModule {}

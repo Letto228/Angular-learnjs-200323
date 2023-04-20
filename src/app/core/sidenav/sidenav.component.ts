@@ -12,12 +12,6 @@ import {MatDrawer} from '@angular/material/sidenav';
 	templateUrl: './sidenav.component.html',
 	styleUrls: ['./sidenav.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	providers: [
-		{
-			provide: 'name',
-			useValue: 'SidenavComponent',
-		},
-	],
 })
 export class SidenavComponent {
 	@ViewChild(MatDrawer)
