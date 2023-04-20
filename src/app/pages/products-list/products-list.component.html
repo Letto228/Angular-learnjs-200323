@@ -15,7 +15,7 @@
 	<!-- Для применения пагинации. chank - массив отображаемых элементов -->
 	<ng-container
 		*appPagination="
-			let chank of products;
+			let chanks of products;
 			chankSize: 3;
 			let next = next;
 			let back = back;
@@ -34,7 +34,7 @@
 			</div>
 
 			<app-card
-				*ngFor="let product of chank; trackBy: trackById; let index = index"
+				*ngFor="let product of chanks; trackBy: trackById; let index = index"
 				class="card"
 				[product]="product"
 				(buy)="onBuy($event)"
