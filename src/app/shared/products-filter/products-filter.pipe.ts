@@ -1,5 +1,5 @@
-import {ChangeDetectorRef, Pipe, PipeTransform} from '@angular/core';
-import {Observable, Subscription} from 'rxjs';
+import {Pipe, PipeTransform} from '@angular/core';
+import {IProduct} from '../products/product.interface';
 
 @Pipe({
 	name: 'productsFilter',
@@ -7,12 +7,12 @@ import {Observable, Subscription} from 'rxjs';
 	//this.changeDetectorRef.markForCheck();
 })
 export class ProductsFilterPipe implements PipeTransform {
-	transform(value: any, input: string) {
+	transform(value: IProduct[], input: string) {
 		if (input) {
-			input = input.toLowerCase();
+			const input2 = input.toLowerCase();
 			return value.filter(function (el: any) {
 				// return el.name.toLowerCase().indexOf(input) > -1;
-				return el.name.toLowerCase().startsWith(input) > 0;
+				return el.name.toLowerCase().startsWith(input2);
 			});
 		}
 		return value;
