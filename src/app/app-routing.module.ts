@@ -7,11 +7,9 @@ import {ProductModule} from './pages/product/product.module';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {NotFoundModule} from './pages/not-found/not-found.module';
 
-// {host}/products-list
 const routes: Routes = [
 	{
 		path: '',
-		// component: ProductsListComponent,
 		redirectTo: '/products-list',
 		pathMatch: 'full',
 	},

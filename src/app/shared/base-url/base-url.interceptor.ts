@@ -22,8 +22,5 @@ export class BaseUrlInterceptor implements HttpInterceptor {
 				console.log('BaseUrlInterceptor');
 			}),
 		);
-		// OtherInterceptor.intercept(patchRequest, next).pipe(tap(() => {
-		//   console.log('BaseUrlInterceptor');
-		// }));
 	}
 }

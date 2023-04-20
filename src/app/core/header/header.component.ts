@@ -12,12 +12,6 @@ import {IApplicationConfig} from '../../shared/application-config/application-co
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	// providers: [
-	// 	{
-	// 		provide: 'name',
-	// 		useValue: 'HeaderComponent',
-	// 	}
-	// ]
 })
 export class HeaderComponent {
 	@Input() applicationConfig: IApplicationConfig | undefined;
