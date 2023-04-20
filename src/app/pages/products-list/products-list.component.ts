@@ -27,7 +27,7 @@ export class ProductsListComponent {
 	// @ViewChild('template', {static: true, read: TemplateRef})
 	// private readonly template!: TemplateRef<unknown>;
 
-	OnInit() {
+	ngOnInit() {
 		// console.log(this.cardsComponent);
 
 		setTimeout(() => {
