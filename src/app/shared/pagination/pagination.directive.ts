@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import {IPaginationContext} from './pagination-context.interface';
 import {BehaviorSubject, Subject, filter, map, takeUntil} from 'rxjs';
+import {ThemePalette} from '@angular/material/core';
 
 @Directive({
 	selector: '[appPagination]',
@@ -21,16 +22,30 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 
 	private readonly currentIndex$ = new BehaviorSubject<number>(0);
 	private readonly destroy$ = new Subject<void>();
+	private pageIndexes: number[] = [];
+	private buttonActiveColorValue: ThemePalette = 'primary';
 
 	constructor(
 		private readonly viewContainerRef: ViewContainerRef,
 		private readonly templateRef: TemplateRef<IPaginationContext<T>>,
 	) {}
 
-	ngOnChanges({appPaginationOf}: SimpleChanges): void {
+	ngOnChanges({appPaginationOf, appPaginationChankSize}: SimpleChanges): void {
+		let updateIndexes = false;
 		if (appPaginationOf) {
+			updateIndexes = true;
 			this.updateView();
 		}
+		if (appPaginationChankSize) {
+			updateIndexes = true;
+		}
+		if (updateIndexes) {
+			this.updateIndexes();
+		}
+	}
+
+	updateIndexes() {
+		this.pageIndexes = this.indexes;
 	}
 
 	ngOnInit(): void {
@@ -42,26 +57,21 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 		this.destroy$.complete();
 	}
 
-	private get indexes() {
-		const pageIndexesArray: number[] = [];
-		if (this.appPaginationOf) {
-			for (
-				let index = 0;
-				index <
-				Math.ceil(this.appPaginationOf.length / this.appPaginationChankSize);
-				index++
-			) {
-				pageIndexesArray.push(index);
-			}
+	private get indexes(): number[] {
+		let indexesLength = 0;
+		if (this.appPaginationOf && this.appPaginationChankSize > 0) {
+			indexesLength = Math.ceil(
+				this.appPaginationOf.length / this.appPaginationChankSize,
+			);
 		}
-		return pageIndexesArray;
+		return Array.from({length: indexesLength}).map((_, index) => index);
 	}
 
-	private pageItems(currentIndex: number) {
-		return this.appPaginationOf?.slice(
+	private pageItems(currentIndex: number): T[] {
+		return (this.appPaginationOf as T[]).slice(
 			currentIndex * this.appPaginationChankSize,
 			currentIndex * this.appPaginationChankSize + this.appPaginationChankSize,
-		) as T[];
+		);
 	}
 
 	private updateView() {
@@ -90,12 +100,12 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 		if (!this.appPaginationOf) {
 			return null;
 		}
-
 		return {
 			$implicit: this.pageItems(currentIndex),
 			index: currentIndex,
-			indexes: this.indexes,
+			indexes: this.pageIndexes,
 			appPaginationOf: this.appPaginationOf,
+			buttonActiveColorValue: this.buttonActiveColorValue,
 			next: () => {
 				this.next();
 			},
@@ -110,13 +120,13 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 
 	private next() {
 		const nextIndex = this.currentIndex$.value + 1;
-		const newIndex = nextIndex < this.indexes.length ? nextIndex : 0;
+		const newIndex = nextIndex < this.pageIndexes.length ? nextIndex : 0;
 		this.currentIndex$.next(newIndex);
 	}
 
 	private back() {
 		const previousIndex = this.currentIndex$.value - 1;
-		const newIndex = previousIndex >= 0 ? previousIndex : this.indexes.length - 1;
+		const newIndex = previousIndex >= 0 ? previousIndex : this.pageIndexes.length - 1;
 		this.currentIndex$.next(newIndex);
 	}
 

@@ -11,7 +11,8 @@
 			let nextPage = next;
 			let backPage = back;
 			let onPage = onPage;
-			let currentPageIndex = index
+			let currentPageIndex = index;
+			let buttonActiveColorValue = buttonActiveColorValue
 		"
 	>
 		<div class="cards-container">
@@ -27,18 +28,18 @@
 			></app-card>
 		</div>
 		<div class="pagination-container">
-			<button mat-icon-button (click)="backPage(); $event.preventDefault()">
+			<button mat-icon-button (click)="backPage()">
 				<mat-icon>chevron_left</mat-icon>
 			</button>
 			<button
 				*ngFor="let index of pageIndexes"
 				mat-icon-button
-				color="{{ currentPageIndex === index ? 'primary' : '' }}"
-				(click)="onPage(index); $event.preventDefault()"
+				[color]="currentPageIndex === index ? buttonActiveColorValue : null"
+				(click)="onPage(index)"
 			>
 				{{ index + 1 }}
 			</button>
-			<button mat-icon-button (click)="nextPage(); $event.preventDefault()">
+			<button mat-icon-button (click)="nextPage()">
 				<mat-icon>chevron_right</mat-icon>
 			</button>
 		</div>
