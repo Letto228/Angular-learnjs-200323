@@ -1,7 +1,7 @@
-import {BehaviorSubject, Observable, filter} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, filter, Observable} from 'rxjs';
 import {IProduct} from './product.interface';
 import {ProductsApiService} from './products-api.service';
-import {Injectable} from '@angular/core';
 
 @Injectable({
 	providedIn: 'root',
@@ -20,8 +20,8 @@ export class ProductsStoreService {
 		return this.currentProductStore$.asObservable();
 	}
 
-	loadProducts() {
-		this.productsApiService.getProducts$().subscribe(products => {
+	loadProducts(subcategoryId?: string | null) {
+		this.productsApiService.getProducts$(subcategoryId).subscribe(products => {
 			this.productsStore$.next(products);
 		});
 	}

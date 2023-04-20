@@ -1,10 +1,9 @@
-import {map, Observable, of} from 'rxjs';
-import {IProduct} from './product.interface';
-import {productsMock} from './products.mock';
-import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {map, Observable} from 'rxjs';
+import {getParamsFromObject} from '../params/get-params-from-object';
+import {IProduct} from './product.interface';
 import {IProductsDto} from './products.dto';
-import {BASE_URL} from '../base-url/base-url.token';
 
 @Injectable({
 	providedIn: 'root',
@@ -12,9 +11,11 @@ import {BASE_URL} from '../base-url/base-url.token';
 export class ProductsApiService {
 	constructor(private readonly httpClient: HttpClient) {}
 
-	getProducts$(): Observable<IProduct[]> {
+	getProducts$(subCategoryId?: string | null): Observable<IProduct[]> {
 		return this.httpClient
-			.get<IProductsDto>(`/products/suggestion`)
+			.get<IProductsDto>(`/products`, {
+				params: getParamsFromObject({subCat: subCategoryId}),
+			})
 			.pipe(map(({data}) => data.items));
 	}
 
