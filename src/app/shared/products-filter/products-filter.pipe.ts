@@ -10,7 +10,7 @@ export class ProductsFilterPipe implements PipeTransform {
 	transform(value: IProduct[], input: string) {
 		if (input) {
 			const input2 = input.toLowerCase();
-			return value.filter(function (el: any) {
+			return value.filter(function (el: IProduct) {
 				// return el.name.toLowerCase().indexOf(input) > -1;
 				return el.name.toLowerCase().startsWith(input2);
 			});
