@@ -30,22 +30,22 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 	) {}
 
 	ngOnChanges({appPaginationOf, appPaginationChankSize}: SimpleChanges): void {
-		let updateIndexes = false;
 		if (appPaginationOf) {
-			updateIndexes = true;
 			this.updateView();
 		}
-		if (appPaginationChankSize) {
-			updateIndexes = true;
-		}
-		if (updateIndexes) {
+		if (appPaginationOf || appPaginationChankSize) {
 			this.updateIndexes();
 		}
 	}
 
 	private updateIndexes() {
 		this.pageIndexes = this.indexes;
-		// this.currentIndex$.next(0);
+		const currentIndex = this.currentIndex$.value;
+		if (currentIndex < this.pageIndexes.length) {
+			this.currentIndex$.next(currentIndex);
+		} else {
+			this.currentIndex$.next(0);
+		}
 	}
 
 	ngOnInit(): void {
@@ -79,7 +79,6 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 			this.viewContainerRef.clear();
 			return;
 		}
-		// this.currentIndex$.next(0);
 	}
 
 	private listenCurrentIndexChange() {
