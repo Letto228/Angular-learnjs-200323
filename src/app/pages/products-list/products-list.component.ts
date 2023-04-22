@@ -18,7 +18,7 @@ export class ProductsListComponent implements OnInit {
 	}
 
 	onScroll(event: LOAD_DIRECTION) {
-		console.log(`scrolled ${event}`);
+		console.log(event);
 	}
 
 	get calculateProducts(): IProduct[] | undefined {

@@ -2,16 +2,31 @@ import {EventEmitter} from '@angular/core';
 import {Output} from '@angular/core';
 import {Directive, HostListener} from '@angular/core';
 import {LOAD_DIRECTION} from './load-direction.const.';
+import {BORDER_OFFSET} from './border-offset.const';
 
 @Directive({
 	selector: '[appScrolWithLoading]',
 })
 export class ScrolWithLoadingDirective {
+	private lastScrollTop = 0;
+
 	@Output()
-	scrolled = new EventEmitter<LOAD_DIRECTION>();
+	loadData = new EventEmitter<LOAD_DIRECTION>();
 
 	@HostListener('scroll', ['$event.target'])
-	onScroll() {
-		this.scrolled.emit(LOAD_DIRECTION.NO_DIRECTION_NEEDED);
+	onScroll({scrollTop, clientHeight, scrollHeight}: HTMLElement) {
+		const lastScrollTop = this.lastScrollTop;
+		this.lastScrollTop = scrollTop;
+
+		const lowerScrollPosition = scrollHeight - clientHeight;
+
+		if (
+			scrollTop > lastScrollTop &&
+			lowerScrollPosition - scrollTop < BORDER_OFFSET.BORDER_OFFSET
+		) {
+			this.loadData.emit(LOAD_DIRECTION.DOWN);
+		} else if (scrollTop < lastScrollTop && scrollTop < BORDER_OFFSET.BORDER_OFFSET) {
+			this.loadData.emit(LOAD_DIRECTION.UP);
+		}
 	}
 }
