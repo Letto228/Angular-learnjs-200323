@@ -1,6 +1,4 @@
 <ng-template let-productsFromContext [ngIf]="calculateProducts" [ngIfElse]="loader">
-	<!-- Заменить при выполнении ДЗ -->
-	<!-- <div appScrollWithLoading class="scroll-container" (loadData)="onLoad($event)"> -->
 	<div class="scroll-container">
 		<app-card
 			class="card"
@@ -33,10 +31,3 @@
 <ng-template #loader>
 	<mat-spinner class="loader"></mat-spinner>
 </ng-template>
-
-<!-- <ng-container #viewport></ng-container>
-
-<ng-template #additionalCards>
-    <app-card class="card" [product]="products?.[3]" (buy)="onBuy($event)"></app-card>
-    <app-card [class.warn]="true" class="card" [product]="products?.[4]" (buy)="onBuy($event)"></app-card>
-</ng-template> -->
