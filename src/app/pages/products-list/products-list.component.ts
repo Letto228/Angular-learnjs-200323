@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IProduct} from '../../shared/products/product.interface';
 import {productsMock} from '../../shared/products/products.mock';
+import {LOAD_DIRECTION} from 'src/app/shared/scroll-with-loading/load-direction.const.';
 
 @Component({
 	selector: 'app-products-list',
@@ -16,13 +17,11 @@ export class ProductsListComponent implements OnInit {
 		}, 3000);
 	}
 
-	onLoad(event: 'before' | 'after') {
-		console.log(`load ${event}`);
+	onScroll(event: LOAD_DIRECTION) {
+		console.log(`scrolled ${event}`);
 	}
 
 	get calculateProducts(): IProduct[] | undefined {
-		// console.log('calculated');
-
 		return this.products;
 	}
 

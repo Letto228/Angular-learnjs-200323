@@ -1,5 +1,5 @@
 <ng-template let-productsFromContext [ngIf]="calculateProducts" [ngIfElse]="loader">
-	<div class="scroll-container">
+	<div appScrolWithLoading class="scroll-container" (scrolled)="onScroll($event)">
 		<app-card
 			class="card"
 			[product]="productsFromContext[0]"
