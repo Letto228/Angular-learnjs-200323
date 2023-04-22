@@ -1,8 +1,8 @@
-jw-modal {
+app-jw-modal {
 	display: none;
 }
 
-jw-modal .jw-modal {
+app-jw-modal .app-jw-modal {
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -12,13 +12,13 @@ jw-modal .jw-modal {
 	overflow: auto;
 }
 
-jw-modal .jw-modal .jw-modal-body {
+app-jw-modal .app-jw-modal .jw-modal-body {
 	padding: 20px;
 	background: #fff;
 	margin: 40px;
 }
 
-jw-modal .jw-modal-background {
+app-jw-modal .jw-modal-background {
 	position: fixed;
 	top: 0;
 	right: 0;

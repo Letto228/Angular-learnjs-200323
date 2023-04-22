@@ -31,7 +31,7 @@ export class DialogComponent implements OnInit, OnDestroy {
 		document.body.appendChild(this.element);
 
 		this.element.addEventListener('click', (el: {target: {className: string}}) => {
-			if (el.target.className === 'jw-modal') {
+			if (el.target.className === 'app-jw-modal') {
 				this.close();
 			}
 		});
