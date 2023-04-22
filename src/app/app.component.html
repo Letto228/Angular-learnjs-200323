@@ -17,3 +17,14 @@
 </app-sidenav>
 
 <!-- <app-popup-host></app-popup-host> -->
+
+<button
+	style="position: absolute; width: 100%; height: 60px"
+	(click)="openModal('dialog')"
+>
+	Открыть
+</button>
+<app-jw-modal id="dialog">
+	<h1>Какая-то всплывашка.</h1>
+	<button (click)="closeModal('dialog')">Close</button>
+</app-jw-modal>
