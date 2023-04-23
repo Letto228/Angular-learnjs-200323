@@ -31,6 +31,7 @@ export class ProductsListComponent implements OnInit {
 	constructor(
 		// @Inject(ChangeDetectorRef) private readonly changeDetectorRef: ChangeDetectorRef,
 		// @Inject(ProductsStoreService) private readonly productsStoreService: ProductsStoreService,
+		private readonly changeDetectorRef: ChangeDetectorRef,
 		private readonly productsStoreService: ProductsStoreService, // private readonly changeDetectorRef: ChangeDetectorRef // @Inject('value') value: string, // @Inject('service') service: [ProductsStoreService, string],
 	) {
 		// console.log(value);
@@ -38,6 +39,11 @@ export class ProductsListComponent implements OnInit {
 		// console.log(service, productsStoreService)
 		// this.changeDetectorRef.detach();
 		// console.log(this.changeDetectorRef);
+		setTimeout(() => {
+			this.searchProperty = 5;
+			this.propertyNameToFilter = 'rating';
+			this.changeDetectorRef.markForCheck();
+		}, 3000);
 	}
 
 	ngOnInit() {
