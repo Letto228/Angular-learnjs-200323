@@ -20,19 +20,8 @@
 	<div>
 		<h1>{{ product.name }}</h1>
 		<nav mat-tab-nav-bar [tabPanel]="tabPanel">
-			<!-- base ProductComponent segments = product/id -->
-			<!-- <a
-				mat-tab-link
-				(click)="onDescriptonNavigate()"
-			> -->
-			<a mat-tab-link routerLink="./description">
-				<!-- product/id + /description -->
-				description
-			</a>
-			<a mat-tab-link routerLink="./type">
-				<!-- product/id + /type -->
-				type
-			</a>
+			<a mat-tab-link routerLink="./description">description</a>
+			<a mat-tab-link routerLink="./type">type</a>
 		</nav>
 		<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
 

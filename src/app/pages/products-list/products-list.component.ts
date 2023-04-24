@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {IProduct} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {map, switchMap, tap} from 'rxjs';
 
 @Component({
@@ -21,19 +21,10 @@ export class ProductsListComponent {
 
 	constructor(
 		private readonly productsStoreService: ProductsStoreService,
-		private readonly router: Router,
 		private readonly activatedRoute: ActivatedRoute,
-		@Inject('name') private readonly name: string,
-	) {
-		console.log(this.name, 'ProductsListComponent');
-	}
+	) {}
 
 	trackById(_index: number, item: IProduct): IProduct['_id'] {
 		return item._id;
-	}
-
-	navigateToProduct() {
-		this.router.navigate(['/product', 'id']);
-		this.router.navigateByUrl('/product/id');
 	}
 }

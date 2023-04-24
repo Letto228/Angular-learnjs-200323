@@ -30,11 +30,5 @@ import {ProductsListRoutingModule} from './products-list-routing.module';
 		ProductsListRoutingModule,
 	],
 	exports: [ProductsListComponent],
-	providers: [
-		{
-			provide: 'name',
-			useValue: 'ProductsListModule',
-		},
-	],
 })
 export class ProductsListModule {}

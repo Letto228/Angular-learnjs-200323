@@ -24,11 +24,6 @@ import {BaseUrlInterceptor} from './shared/base-url/base-url.interceptor';
 		HttpClientModule,
 	],
 	providers: [
-		// ...SidenavModule.providers,
-		{
-			provide: 'name',
-			useValue: 'AppModule',
-		},
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: BaseUrlInterceptor,
@@ -38,31 +33,3 @@ import {BaseUrlInterceptor} from './shared/base-url/base-url.interceptor';
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-// ModuleInjectors
-
-// NullInjector
-
-// |
-
-// PlatformInjector
-
-// |												\
-
-// RootInjector(AppModuleInjector)(AppFirst)		RootInjector(AppSecond)
-
-// |												|
-
-// ProductsListModuleInjector						...
-
-// ElementInjectors
-
-// AppCoponentElementIngector
-
-// |									\
-
-// SidenavComponentElementInjector		HeaderComponentElementInjector
-
-// |
-
-// ProductsListComponentElemntInjector(?)

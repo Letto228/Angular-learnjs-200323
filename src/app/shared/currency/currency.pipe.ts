@@ -7,7 +7,6 @@ import {currency} from './currency';
 })
 export class CurrencyPipe implements PipeTransform {
 	transform(value: number, symbol: string): string {
-		console.log('currency from pipe');
 		return currency(value, symbol);
 	}
 }
