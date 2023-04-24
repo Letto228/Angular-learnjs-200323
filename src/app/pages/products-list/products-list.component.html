@@ -1,12 +1,60 @@
-<mat-form-field class="example-full-width">
+<!-- <app-counter-input
+	[class.touched]="counterFormControl.touched"
+	[class.untouched]="counterFormControl.untouched"
+	[step]="100"
+	[formControl]="counterFormControl"
+></app-counter-input>
+
+{{counterFormControl.value}}
+{{counterFormControlValue$ | async}}
+{{counterFormControl.touched}} -->
+
+<!-- <app-counter-input
+	#ngModel="ngModel"
+	[step]="100"
+	[ngModel]="counter"
+	(ngModelChange)="onCounterChange($event)"
+></app-counter-input> -->
+<!-- <app-counter-input
+	[step]="100"
+	[(ngModel)]="counter"
+></app-counter-input> -->
+
+<!-- {{counter}}
+{{ngModel.value}} -->
+
+<!-- <mat-form-field class="example-full-width">
 	<mat-label>Search</mat-label>
-	<input matInput />
+	<input matInput [formControl]="searchControl"/>
 </mat-form-field>
 
+{{searchControl.errors | json}}
+{{(searchedProductNameErrors$ | async) | json}}
+{{searchControl.valid}} -->
+
+<mat-form-field class="example-full-width">
+	<mat-label>Search</mat-label>
+	<input #searchInput="ngModel" matInput ngModel appIsStringAsync [minlength]="3" />
+</mat-form-field>
+
+{{ searchInput.errors | json }}
+{{ searchInput.valid }}
+
 <div *ngIf="products$ | async as products; else loader" class="scroll-container">
+	<!-- <ng-container
+		*appPagination="
+			let productsGroup of products | filterByProperty : 'name' : (searchedProductName$ | async);
+			chankSize: 6;
+			let pageIndexes = pageIndexes;
+			let activeIndex = index;
+			let next = next;
+			let back = back;
+			let selectIndex = selectIndex
+		"
+	> -->
 	<ng-container
 		*appPagination="
-			let productsGroup of products | filterByProperty : 'name' : '';
+			let productsGroup of products | filterByProperty : 'name' : searchInput.value;
 			chankSize: 6;
 			let pageIndexes = pageIndexes;
 			let activeIndex = index;

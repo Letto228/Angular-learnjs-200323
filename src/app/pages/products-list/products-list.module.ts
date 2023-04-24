@@ -13,6 +13,9 @@ import {FilterByPropertyModule} from '../../shared/filter-by-property/filter-by-
 import {RouterModule} from '@angular/router';
 import {ProductsListRoutingModule} from './products-list-routing.module';
 import {MatInputModule} from '@angular/material/input';
+import {CounterInputModule} from '../../shared/counter-input/counter-input.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ValidatorsDirectivesModule} from '../../shared/validators/validators-directives/validators-directives.module';
 
 @NgModule({
 	declarations: [ProductsListComponent],
@@ -30,6 +33,10 @@ import {MatInputModule} from '@angular/material/input';
 		RouterModule,
 		ProductsListRoutingModule,
 		MatInputModule,
+		CounterInputModule,
+		ReactiveFormsModule,
+		FormsModule,
+		ValidatorsDirectivesModule,
 	],
 	exports: [ProductsListComponent],
 })
