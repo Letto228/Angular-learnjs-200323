@@ -14,6 +14,7 @@
 		mat-icon-button
 		aria-label="Example icon-button with heart icon"
 		class="example-icon favorite-icon"
+		(click)="openPopup(favoritePopupTempalte)"
 	>
 		<mat-icon>favorite</mat-icon>
 	</button>
@@ -25,3 +26,11 @@
 		<mat-icon>share</mat-icon>
 	</button>
 </mat-toolbar>
+
+<ng-template #favoritePopupTempalte let-title>
+	<div class="favorite-popup">
+		{{ title }}
+		<h1>No, you are favorite</h1>
+		<button (click)="closePopup()">I know</button>
+	</div>
+</ng-template>
