@@ -1,1 +1,9 @@
-<ng-template [ngTemplateOutlet]="template"></ng-template>
+<ng-container *ngIf="templateContent$ | async as templateContent">
+	<ng-template
+		[ngTemplateOutlet]="templateContent.template"
+		[ngTemplateOutletContext]="templateContent.context"
+	></ng-template>
+	<button mat-mini-fab class="close-button" (click)="onPopupClose()">
+		<mat-icon>close</mat-icon>
+	</button>
+</ng-container>

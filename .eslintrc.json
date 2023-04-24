@@ -37,7 +37,8 @@
 							"match": true
 						}
 					}
-				]
+				],
+				"@typescript-eslint/ban-types": "off"
 			}
 		},
 		{
