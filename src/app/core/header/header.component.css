@@ -1,30 +1,17 @@
-/* h1[id="test"] {
-    color: blue;
-} */
-
-/* h1[_ngcontent-***] {...} */
-/* h1 {
-    color: blue;
-} */
-
-/* [_nghost-***] {...} */
-/* :host {
-    display: block;
-    background: aqua;
-}
-
-:host ::ng-deep h1 {
-    color: blueviolet;
-} */
-
 .example-spacer {
 	flex: 1 1 auto;
 }
 
-.shop-icon {
+.logo {
+	display: flex;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.logo__icon {
 	width: 30px;
 	height: 30px;
-	margin-right: 8px;
+	margin: 0 4px;
 }
 
 .favorite-popup {
