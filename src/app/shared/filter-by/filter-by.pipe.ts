@@ -8,11 +8,14 @@ export class FilterByPipe implements PipeTransform {
 	transform(
 		products: IProduct[],
 		property: keyof IProduct,
-		value: any,
+		value: number | string,
 	): IProduct[] | null {
-		// if (!products.length) return products
+		/*  Егор, я пока не силен в TS, поэтому, предположим,
+        что к нам приходят только два типа:
+        string и number.
+     */
 
-		if (isNaN(value)) {
+		if (typeof value === 'string') {
 			return products.filter(product =>
 				product[property]
 					.toString()

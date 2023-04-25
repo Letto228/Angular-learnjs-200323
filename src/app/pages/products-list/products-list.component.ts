@@ -25,11 +25,11 @@ export class ProductsListComponent implements OnInit {
 
 	// name = 'Мышь';
 
-	propertyNameToFilter: keyof IProduct = 'name';
-	searchProperty = 'Кабель';
+	// propertyNameToFilter: keyof IProduct = 'name';
+	// searchProperty = 'Кабель';
 
-	// propertyNameToFilter: keyof IProduct = 'feedbacksCount';
-	// searchProperty = 2;
+	propertyNameToFilter: keyof IProduct = 'feedbacksCount';
+	searchProperty = 2;
 
 	// propertyNameToFilter: keyof IProduct = 'rating';
 	// searchProperty = 4.5;
@@ -37,9 +37,8 @@ export class ProductsListComponent implements OnInit {
 	constructor(
 		// @Inject(ChangeDetectorRef) private readonly changeDetectorRef: ChangeDetectorRef,
 		// @Inject(ProductsStoreService) private readonly productsStoreService: ProductsStoreService,
-		private readonly productsStoreService: ProductsStoreService, // private readonly changeDetectorRef: ChangeDetectorRef // @Inject('value') value: string,
-	) // @Inject('service') service: [ProductsStoreService, string],
-	{
+		private readonly productsStoreService: ProductsStoreService, // private readonly changeDetectorRef: ChangeDetectorRef // @Inject('value') value: string, // @Inject('service') service: [ProductsStoreService, string],
+	) {
 		// console.log(value);
 		// console.log(service[0] === productsStoreService)
 		// console.log(service, productsStoreService)
