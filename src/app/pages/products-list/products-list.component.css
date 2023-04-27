@@ -57,6 +57,9 @@
 .example-full-width {
 	width: 100%;
 }
+.slider-on-search {
+	width: 300px;
+}
 
 /* .ng-touched {
 	border:  3px solid red;

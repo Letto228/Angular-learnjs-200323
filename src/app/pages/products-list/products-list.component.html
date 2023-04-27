@@ -36,9 +36,15 @@
 	<mat-label>Search</mat-label>
 	<input #searchInput="ngModel" matInput ngModel appIsStringAsync [minlength]="3" />
 </mat-form-field>
-
 {{ searchInput.errors | json }}
 {{ searchInput.valid }}
+
+<!-- TO DO Как его заставить выдавать по дефолту рэндж 100-200 ? -->
+<mat-slider min="0" max="1000" class="slider-on-search">
+	<input #searchSliderMin="ngModel" value="100" ngModel matSliderStartThumb />
+	<input #searchSliderMax="ngModel" value="200" ngModel matSliderEndThumb />
+</mat-slider>
+{{ searchSliderMin.value }} - {{ searchSliderMax.value }}
 
 <div *ngIf="products$ | async as products; else loader" class="scroll-container">
 	<!-- <ng-container
@@ -54,7 +60,9 @@
 	> -->
 	<ng-container
 		*appPagination="
-			let productsGroup of products | filterByProperty : 'name' : searchInput.value;
+			let productsGroup of products
+				| filterByProperty : 'name' : searchInput.value
+				| filterByPrice : 'price' : searchSliderMin.value : searchSliderMax.value;
 			chankSize: 6;
 			let pageIndexes = pageIndexes;
 			let activeIndex = index;
