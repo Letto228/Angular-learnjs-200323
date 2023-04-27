@@ -25,8 +25,6 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 	private readonly currentIndex$ = new BehaviorSubject<number>(0);
 	private readonly destroy$ = new Subject<void>();
 
-	private router!: Router;
-
 	constructor(
 		private readonly viewContainerRef: ViewContainerRef,
 		private readonly templateRef: TemplateRef<IPaginationContext<T>>,
