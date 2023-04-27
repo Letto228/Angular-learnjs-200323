@@ -14,3 +14,29 @@
 :host(.empty) {
 	display: none;
 }
+
+.popup__window {
+	width: 600px;
+	height: 600px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+}
+.popup__close-button {
+	border: 1px solid lightgray;
+	color: gray;
+	background-color: white;
+	cursor: pointer;
+}
+
+.popup__window-content {
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.popup__window-header {
+	display: flex;
+	justify-content: end;
+}

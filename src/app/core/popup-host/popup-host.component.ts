@@ -1,14 +1,12 @@
 import {
 	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	HostBinding,
-	Input,
-	OnChanges,
-	SimpleChanges,
 	TemplateRef,
-	ViewChild,
-	ViewContainerRef,
 } from '@angular/core';
+import {PopupHostService} from './popup-host.service';
+import {Observable, tap} from 'rxjs';
 
 @Component({
 	selector: 'app-popup-host',
@@ -17,10 +15,21 @@ import {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PopupHostComponent {
-	@Input() template: TemplateRef<unknown> | null = null;
-
 	@HostBinding('class.empty')
-	get isEmpty(): boolean {
-		return !this.template;
+	isEmpty = true;
+	template$: Observable<TemplateRef<unknown> | null> =
+		this.popupHostService.popupTemplate$.pipe(
+			tap(value => {
+				this.changeDetectorRef.markForCheck();
+				this.isEmpty = !value;
+			}),
+		);
+	constructor(
+		private popupHostService: PopupHostService,
+		private readonly changeDetectorRef: ChangeDetectorRef,
+	) {}
+
+	close() {
+		this.popupHostService.clearPopupTemplate();
 	}
 }
