@@ -10,6 +10,9 @@ import {MatListModule} from '@angular/material/list';
 import {PopupHostModule} from './core/popup-host/popup-host.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BaseUrlInterceptor} from './shared/base-url/base-url.interceptor';
+import {StoreModule} from '@ngrx/store';
+import {storeReducer} from './store/reducer';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -22,6 +25,8 @@ import {BaseUrlInterceptor} from './shared/base-url/base-url.interceptor';
 		MatListModule,
 		PopupHostModule,
 		HttpClientModule,
+		StoreModule.forRoot(storeReducer),
+		StoreDevtoolsModule.instrument(),
 	],
 	providers: [
 		{
