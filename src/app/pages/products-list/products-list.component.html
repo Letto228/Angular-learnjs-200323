@@ -1,44 +1,4 @@
-<!-- <app-counter-input
-	[class.touched]="counterFormControl.touched"
-	[class.untouched]="counterFormControl.untouched"
-	[step]="100"
-	[formControl]="counterFormControl"
-></app-counter-input>
-
-{{counterFormControl.value}}
-{{counterFormControlValue$ | async}}
-{{counterFormControl.touched}} -->
-
-<!-- <app-counter-input
-	#ngModel="ngModel"
-	[step]="100"
-	[ngModel]="counter"
-	(ngModelChange)="onCounterChange($event)"
-></app-counter-input> -->
-<!-- <app-counter-input
-	[step]="100"
-	[(ngModel)]="counter"
-></app-counter-input> -->
-
-<!-- {{counter}}
-{{ngModel.value}} -->
-
-<!-- <mat-form-field class="example-full-width">
-	<mat-label>Search</mat-label>
-	<input matInput [formControl]="searchControl"/>
-</mat-form-field>
-
-{{searchControl.errors | json}}
-{{(searchedProductNameErrors$ | async) | json}}
-{{searchControl.valid}} -->
-
-<mat-form-field class="example-full-width">
-	<mat-label>Search</mat-label>
-	<input #searchInput="ngModel" matInput ngModel appIsStringAsync [minlength]="3" />
-</mat-form-field>
-
-{{ searchInput.errors | json }}
-{{ searchInput.valid }}
+<app-filter [brands]="brands$ | async"></app-filter>
 
 <div *ngIf="products$ | async as products; else loader" class="scroll-container">
 	<!-- <ng-container
@@ -54,7 +14,7 @@
 	> -->
 	<ng-container
 		*appPagination="
-			let productsGroup of products | filterByProperty : 'name' : searchInput.value;
+			let productsGroup of products | filterByProperty : 'name' : '';
 			chankSize: 6;
 			let pageIndexes = pageIndexes;
 			let activeIndex = index;

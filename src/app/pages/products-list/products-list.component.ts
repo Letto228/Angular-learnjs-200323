@@ -6,6 +6,7 @@ import {Observable, map, startWith, switchMap, tap} from 'rxjs';
 import {AbstractControl, FormControl, ValidationErrors, Validators} from '@angular/forms';
 import {isStringValidator} from '../../shared/validators/is-string.validator';
 import {isStringAsyncValidator} from '../../shared/validators/is-string-async.validator';
+import {BrandsService} from '../../shared/brands/brands.service';
 
 @Component({
 	selector: 'app-products-list',
@@ -20,6 +21,13 @@ export class ProductsListComponent {
 			this.productsStoreService.loadProducts(subCategoryId);
 		}),
 		switchMap(() => this.productsStoreService.products$),
+	);
+	readonly brands$ = this.activatedRoute.paramMap.pipe(
+		map(paramMap => paramMap.get('subcategoryId')),
+		tap(id => {
+			this.brandsService.loadBrands(id);
+		}),
+		switchMap(() => this.brandsService.brands$),
 	);
 
 	// counter = 0;
@@ -46,7 +54,7 @@ export class ProductsListComponent {
 	constructor(
 		private readonly productsStoreService: ProductsStoreService,
 		private readonly activatedRoute: ActivatedRoute,
-		private readonly changeDetectorRef: ChangeDetectorRef,
+		private readonly brandsService: BrandsService,
 	) {
 		// setTimeout(() => {
 		// 	this.counterFormControl.setValue(300);
