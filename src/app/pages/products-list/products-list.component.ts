@@ -7,6 +7,7 @@ import {AbstractControl, FormControl, ValidationErrors, Validators} from '@angul
 import {isStringValidator} from '../../shared/validators/is-string.validator';
 import {isStringAsyncValidator} from '../../shared/validators/is-string-async.validator';
 import {BrandsService} from '../../shared/brands/brands.service';
+import {IProductsFilter} from './filter/products-filter.interface';
 
 @Component({
 	selector: 'app-products-list',
@@ -30,6 +31,8 @@ export class ProductsListComponent {
 		switchMap(() => this.brandsService.brands$),
 	);
 
+	name = '';
+
 	// counter = 0;
 
 	// readonly counterFormControl = new FormControl(0);
@@ -41,6 +44,7 @@ export class ProductsListComponent {
 		validators: [Validators.minLength(3)],
 		// asyncValidators: [this.isStringAsyncValidator.bind(this)],
 		asyncValidators: [isStringAsyncValidator],
+		updateOn: 'submit',
 	});
 	readonly searchedProductName$ = this.searchControl.valueChanges.pipe(
 		startWith(this.searchControl.value),
@@ -67,6 +71,11 @@ export class ProductsListComponent {
 
 	trackById(_index: number, item: IProduct): IProduct['_id'] {
 		return item._id;
+	}
+
+	onFilterChange(filter: IProductsFilter) {
+		console.log(filter);
+		this.name = filter.name;
 	}
 
 	// onCounterChange(counter: number) {

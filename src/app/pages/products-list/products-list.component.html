@@ -1,20 +1,12 @@
-<app-filter [brands]="brands$ | async"></app-filter>
+<app-filter
+	[brands]="brands$ | async"
+	(changeFilter)="onFilterChange($event)"
+></app-filter>
 
 <div *ngIf="products$ | async as products; else loader" class="scroll-container">
-	<!-- <ng-container
-		*appPagination="
-			let productsGroup of products | filterByProperty : 'name' : (searchedProductName$ | async);
-			chankSize: 6;
-			let pageIndexes = pageIndexes;
-			let activeIndex = index;
-			let next = next;
-			let back = back;
-			let selectIndex = selectIndex
-		"
-	> -->
 	<ng-container
 		*appPagination="
-			let productsGroup of products | filterByProperty : 'name' : '';
+			let productsGroup of products | filterByProperty : 'name' : name;
 			chankSize: 6;
 			let pageIndexes = pageIndexes;
 			let activeIndex = index;
