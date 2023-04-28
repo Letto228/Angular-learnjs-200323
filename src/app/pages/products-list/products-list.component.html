@@ -14,18 +14,46 @@
 	<!-- {{productsFromNgForDirective}}
 			{{index}} -->
 
-	<!-- Для применения пагинации. chank - массив отображаемых элементов -->
-	<!-- <ng-container *appPagination="let chank of productsFromContext; chankSize: 4"> -->
-	<app-card
-		*ngFor="
-			let product of ngIfInputValue as productsFromNgForDirective;
-			trackBy: trackById;
-			let index = index
+	<ng-container
+		*appPagination="
+			let chank of products;
+			let next = next;
+			let test;
+			let back = back;
+			let index = index;
+			chankSize: 4;
+			let getPage = getPage;
+			let pages = pages
 		"
-		class="card"
-		[product]="product"
-		(buy)="onBuy($event)"
-	></app-card>
+	>
+		<div class="pagination-wr">
+			<button mat-icon-button (click)="back(); $event.stopPropagation()">
+				<mat-icon>chevron_left</mat-icon>
+			</button>
+			<button
+				*ngFor="let page of pages"
+				mat-button
+				[ngClass]="{active: page === index}"
+				(click)="getPage(page)"
+			>
+				{{ page + 1 }}
+			</button>
+			<button mat-icon-button (click)="next(); $event.stopPropagation()">
+				<mat-icon>chevron_right</mat-icon>
+			</button>
+		</div>
+		<app-card
+			*ngFor="
+				let product of chank as productsFromNgForDirective;
+				trackBy: trackById;
+				let index = index
+			"
+			class="card"
+			[product]="product"
+			(buy)="onBuy($event)"
+		></app-card>
+	</ng-container>
+
 	<!-- </ng-container> -->
 
 	<!-- </ng-template> -->
