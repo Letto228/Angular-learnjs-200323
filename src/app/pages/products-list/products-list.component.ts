@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
 import {IProduct} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Observable, map, startWith, switchMap, tap} from 'rxjs';
 import {AbstractControl, FormControl, ValidationErrors, Validators} from '@angular/forms';
 import {isStringValidator} from '../../shared/validators/is-string.validator';
@@ -59,6 +59,7 @@ export class ProductsListComponent {
 		private readonly productsStoreService: ProductsStoreService,
 		private readonly activatedRoute: ActivatedRoute,
 		private readonly brandsService: BrandsService,
+		private router: Router,
 	) {
 		// setTimeout(() => {
 		// 	this.counterFormControl.setValue(300);
@@ -76,8 +77,31 @@ export class ProductsListComponent {
 	onFilterChange(filter: IProductsFilter) {
 		console.log(filter);
 		this.name = filter.name;
+		//localStorage.setItem('name', this.name);
+		this.router.navigate([], {
+			queryParams: {
+				name: this.name,
+			},
+		});
 	}
 
+	ngOnInit() {
+		//localStorage.setItem('name', 'пил');
+		//const filterValueStor = localStorage.getItem('name') || '';
+		// http://localhost:4200/products-list?name=%D1%81%D0%B2%D0%B0
+		const urlTree = this.router.parseUrl(this.router.url);
+		const filterValueUrlTree = urlTree.queryParams['name'];
+
+		this.name = filterValueUrlTree;
+
+		this.router.navigate([], {
+			queryParams: {
+				name: filterValueUrlTree,
+			},
+		});
+
+		//console.log(filterValueStor, filterValueUrlTree);
+	}
 	// onCounterChange(counter: number) {
 	// 	this.counter = counter;
 	// 	console.log(counter);
