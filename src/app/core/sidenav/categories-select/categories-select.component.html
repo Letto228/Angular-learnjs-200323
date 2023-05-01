@@ -9,12 +9,13 @@
 			<!-- add redirect by click on "products-list" page with subCategory._id parametrs -->
 			<!-- [routerLink]="['/products-list', subCategory._id]"
 			навигация не делается в кнопке, можно переписать на див, либо через функцию -->
+			<!-- (click)="subCategoryClick(subCategory._id)" -->
 			<button
 				*ngFor="let subCategory of category.subCategories"
 				mat-button
 				hideToggle
 				class="sub-catigory"
-				(click)="subCategoryClick(subCategory._id)"
+				[routerLink]="['/products-list', subCategory._id]"
 			>
 				{{ subCategory.name }}
 			</button>
