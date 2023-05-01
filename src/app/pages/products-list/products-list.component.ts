@@ -77,7 +77,7 @@ export class ProductsListComponent {
 	onFilterChange(filter: IProductsFilter) {
 		console.log(filter);
 		this.name = filter.name;
-		localStorage.setItem('name', this.name);
+		//localStorage.setItem('name', this.name);
 		this.router.navigate([], {
 			queryParams: {
 				name: this.name,
@@ -87,20 +87,20 @@ export class ProductsListComponent {
 
 	ngOnInit() {
 		//localStorage.setItem('name', 'пил');
-		const filterValueStor = localStorage.getItem('name') || '';
-
+		//const filterValueStor = localStorage.getItem('name') || '';
+		// http://localhost:4200/products-list?name=%D1%81%D0%B2%D0%B0
 		const urlTree = this.router.parseUrl(this.router.url);
 		const filterValueUrlTree = urlTree.queryParams['name'];
 
-		this.name = filterValueStor;
+		this.name = filterValueUrlTree;
 
 		this.router.navigate([], {
 			queryParams: {
-				name: filterValueStor,
+				name: filterValueUrlTree,
 			},
 		});
 
-		console.log(filterValueStor, filterValueUrlTree);
+		//console.log(filterValueStor, filterValueUrlTree);
 	}
 	// onCounterChange(counter: number) {
 	// 	this.counter = counter;
