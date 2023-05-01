@@ -8,6 +8,7 @@ import {
 	TemplateRef,
 	ViewContainerRef,
 } from '@angular/core';
+import {Router} from '@angular/router';
 import {BehaviorSubject, map, Subject, takeUntil} from 'rxjs';
 import {getGroupedItems} from './get-grouped-items';
 import {IPaginationContext} from './pagination-context.interface';
@@ -30,6 +31,8 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 	) {}
 
 	ngOnChanges({appPaginationOf, appPaginationChankSize}: SimpleChanges): void {
+		console.log('сколько', this.appPaginationOf?.length);
+		//if (this.appPaginationOf?.length==0) this.router.navigateByUrl('/');
 		if (appPaginationOf || appPaginationChankSize) {
 			if (!this.appPaginationOf?.length) {
 				this.viewContainerRef.clear();
