@@ -2,6 +2,7 @@ import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
+	OnInit,
 	ViewChild,
 } from '@angular/core';
 import {MatDrawer} from '@angular/material/sidenav';
@@ -13,11 +14,11 @@ import {CategoriesStoreService} from '../../shared/categories/categories-store.s
 	styleUrls: ['./sidenav.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidenavComponent {
-	readonly categories$ = this.categoriesStoreService.categories$;
-
+export class SidenavComponent implements OnInit {
 	@ViewChild(MatDrawer, {read: MatDrawer, static: true})
 	private matDrawer!: MatDrawer;
+
+	readonly categories$ = this.categoriesStoreService.categories$;
 
 	constructor(
 		private readonly changeDetectorRef: ChangeDetectorRef,

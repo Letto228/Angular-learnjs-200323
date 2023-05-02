@@ -5,7 +5,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {CounterInputModule} from '../../../shared/counter-input/counter-input.module';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
 	declarations: [FilterComponent],
@@ -16,7 +16,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 		MatProgressSpinnerModule,
 		CounterInputModule,
 		ReactiveFormsModule,
-		FormsModule,
 	],
 	exports: [FilterComponent],
 })

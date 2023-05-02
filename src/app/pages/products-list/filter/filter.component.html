@@ -27,42 +27,6 @@
 		</div>
 	</div>
 </form>
-<!-- <form #form="ngForm" class="filter" (ngSubmit)="onFilterSubmit(form.value)">
-	<mat-form-field appearance="fill">
-		<mat-label>Search</mat-label>
-		<input matInput ngModel name="name" />
-	</mat-form-field>
-
-	<div
-		*ngIf="brands; else loaderTemplateRef"
-		ngModelGroup="brands"
-		class="checkbox-container"
-	>
-		<mat-checkbox
-			*ngFor="let brand of brands; let index = index"
-			[ngModel]="false"
-			[name]="index.toFixed()"
-		>
-			{{ brand }}
-		</mat-checkbox>
-	</div>
-	<div ngModelGroup="priceRange" class="price-range">
-		<div>
-			Min
-			<app-counter-input name="min" [ngModel]="0"></app-counter-input>
-		</div>
-		<div>
-			Max
-			<app-counter-input name="max" [ngModel]="999999"></app-counter-input>
-		</div>
-	</div>
-
-	<button type="submit">Применить</button>
-</form> -->
-
-<!-- {{form.value | json}} -->
-
-<!-- {{filterForm.value| json}} -->
 
 <ng-template #loaderTemplateRef>
 	<mat-spinner diameter="60" class="loader"></mat-spinner>

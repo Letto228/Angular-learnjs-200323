@@ -36,7 +36,6 @@ export class CounterInputComponent implements ControlValueAccessor {
 		this.changeDetectorRef.markForCheck();
 	}
 
-	// fn === (value: unknow) => {control.setValue(value)}
 	registerOnChange(fn: (counter: number) => void) {
 		this.onChange = fn;
 	}

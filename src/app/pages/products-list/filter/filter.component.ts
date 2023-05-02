@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {IProductsFilter} from './products-filter.interface';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Observable, map, takeUntil} from 'rxjs';
+import {map, takeUntil} from 'rxjs';
 import {DestroyService} from '../../../shared/destroy/destroy.service';
 
 @Component({
@@ -52,18 +52,6 @@ export class FilterComponent implements OnChanges, OnInit {
 		this.initFilterValue();
 		this.listenFilterChange();
 	}
-
-	// get nameFormControl(): FormControl {
-	// 	return this.filterForm.get('name') as FormControl;
-	// }
-
-	// get minFormControl(): FormControl {
-	// 	return this.filterForm.get(['priceRange', 'min']) as FormControl;
-	// }
-
-	// get maxFormControl(): FormControl {
-	// 	return this.filterForm.get(['priceRange', 'max']) as FormControl;
-	// }
 
 	private initBrandsForm() {
 		const initialFilterBrands = this.initialFilter.brands;
@@ -118,23 +106,4 @@ export class FilterComponent implements OnChanges, OnInit {
 			? []
 			: this.brands.filter((_, index) => brandsFormValue[index]);
 	}
-
-	// Template driven form
-	// onFilterSubmit({name, priceRange, brands}: IProductsFilterForm) {
-	// 	const filter: IProductsFilter = {
-	// 		name: name,
-	// 		priceRange: priceRange,
-	// 		brands: this.getBrandsListFromForm(brands),
-	// 	};
-
-	// 	this.changeFilter.emit(filter);
-	// }
-
-	// private getBrandsListFromForm(
-	// 	brandsFormValue: Record<string, boolean>,
-	// ): IProductsFilter['brands'] {
-	// 	return !this.brands
-	// 		? []
-	// 		: this.brands.filter((_, index) => brandsFormValue[index]);
-	// }
 }
