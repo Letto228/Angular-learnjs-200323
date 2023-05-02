@@ -1,13 +1,13 @@
-<!-- <form class="filter" [formGroup]="filterForm">
+<form class="filter" [formGroup]="filterForm">
 	<mat-form-field appearance="fill">
 		<mat-label>Search</mat-label>
-		<input matInput formControlName="name"/>
+		<input matInput formControlName="name" />
 	</mat-form-field>
 
 	<div
 		*ngIf="brands; else loaderTemplateRef"
-		class="checkbox-container"
 		formArrayName="brands"
+		class="checkbox-container"
 	>
 		<mat-checkbox
 			*ngFor="let brand of brands; let index = index"
@@ -26,8 +26,8 @@
 			<app-counter-input formControlName="max"></app-counter-input>
 		</div>
 	</div>
-</form> -->
-<form #form="ngForm" class="filter" (ngSubmit)="onFilterSubmit(form.value)">
+</form>
+<!-- <form #form="ngForm" class="filter" (ngSubmit)="onFilterSubmit(form.value)">
 	<mat-form-field appearance="fill">
 		<mat-label>Search</mat-label>
 		<input matInput ngModel name="name" />
@@ -58,7 +58,7 @@
 	</div>
 
 	<button type="submit">Применить</button>
-</form>
+</form> -->
 
 <!-- {{form.value | json}} -->
 
