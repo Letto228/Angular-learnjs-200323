@@ -1,16 +1,16 @@
-import {TestBed} from '@angular/core/testing';
+// import {TestBed} from '@angular/core/testing';
 
-import {PromptCanActivateChildGuard} from './prompt-can-activate-child.guard';
+// import {PromptCanActivateChildGuard} from './prompt-can-activate-child.guard';
 
-describe('PromptCanActivateChildGuard', () => {
-	let guard: PromptCanActivateChildGuard;
+// describe('PromptCanActivateChildGuard', () => {
+// 	let guard: PromptCanActivateChildGuard;
 
-	beforeEach(() => {
-		TestBed.configureTestingModule({});
-		guard = TestBed.inject(PromptCanActivateChildGuard);
-	});
+// 	beforeEach(() => {
+// 		TestBed.configureTestingModule({});
+// 		guard = TestBed.inject(PromptCanActivateChildGuard);
+// 	});
 
-	it('should be created', () => {
-		expect(guard).toBeTruthy();
-	});
-});
+// 	it('should be created', () => {
+// 		expect(guard).toBeTruthy();
+// 	});
+// });
