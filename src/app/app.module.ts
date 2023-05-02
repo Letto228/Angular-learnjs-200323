@@ -13,6 +13,8 @@ import {BaseUrlInterceptor} from './shared/base-url/base-url.interceptor';
 import {StoreModule} from '@ngrx/store';
 import {storeReducer} from './store/reducer';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {EffectsModule} from '@ngrx/effects';
+import {effects} from './store/effects';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -26,6 +28,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 		PopupHostModule,
 		HttpClientModule,
 		StoreModule.forRoot(storeReducer),
+		EffectsModule.forRoot(effects),
 		StoreDevtoolsModule.instrument(),
 	],
 	providers: [

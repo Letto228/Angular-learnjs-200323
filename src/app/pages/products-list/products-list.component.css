@@ -52,15 +52,3 @@
 	display: flex;
 	overflow: auto;
 }
-
-.example-full-width {
-	width: 100%;
-}
-
-/* .ng-touched {
-	border:  3px solid red;
-}
-
-.ng-untouched {
-	border:  3px solid black;
-} */

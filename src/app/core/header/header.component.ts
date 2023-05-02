@@ -1,5 +1,7 @@
 import {
+	AfterViewChecked,
 	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	EventEmitter,
 	Input,
@@ -20,7 +22,24 @@ export class HeaderComponent {
 
 	@Output() menuClick = new EventEmitter<void>();
 
-	constructor(private readonly popupService: PopupService) {}
+	constructor(
+		private readonly popupService: PopupService,
+		private readonly changeDetectorRef: ChangeDetectorRef,
+	) {
+		// this.changeDetectorRef.detach();
+	}
+
+	// ngAfterViewChecked(): void {
+	// 	console.log('ngAfterViewChecked');
+	// }
+
+	counter = 0;
+
+	check(): number {
+		console.log('check');
+
+		return this.counter++;
+	}
 
 	openPopup(template: TemplateRef<{$implicit: string}>) {
 		this.popupService.openPopup({
