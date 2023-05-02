@@ -1,5 +1,4 @@
 import {
-	AfterViewChecked,
 	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
@@ -25,21 +24,7 @@ export class HeaderComponent {
 	constructor(
 		private readonly popupService: PopupService,
 		private readonly changeDetectorRef: ChangeDetectorRef,
-	) {
-		// this.changeDetectorRef.detach();
-	}
-
-	// ngAfterViewChecked(): void {
-	// 	console.log('ngAfterViewChecked');
-	// }
-
-	counter = 0;
-
-	check(): number {
-		console.log('check');
-
-		return this.counter++;
-	}
+	) {}
 
 	openPopup(template: TemplateRef<{$implicit: string}>) {
 		this.popupService.openPopup({

@@ -4,7 +4,6 @@
 	[initialFilter]="initialFilter"
 	(changeFilter)="onFilterChange($event)"
 ></app-filter>
-{{ check() }}
 
 <div *ngIf="products$ | async as products; else loader" class="scroll-container">
 	<ng-container

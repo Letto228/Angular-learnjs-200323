@@ -1,5 +1,4 @@
 import {
-	AfterViewInit,
 	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
@@ -15,7 +14,7 @@ import {CategoriesStoreService} from '../../shared/categories/categories-store.s
 	styleUrls: ['./sidenav.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidenavComponent implements OnInit, AfterViewInit {
+export class SidenavComponent implements OnInit {
 	@ViewChild(MatDrawer, {read: MatDrawer, static: true})
 	private matDrawer!: MatDrawer;
 
@@ -28,10 +27,6 @@ export class SidenavComponent implements OnInit, AfterViewInit {
 
 	ngOnInit() {
 		this.categoriesStoreService.loadCategories();
-	}
-
-	ngAfterViewInit(): void {
-		this.toggleSidenavOpened();
 	}
 
 	toggleSidenavOpened() {
