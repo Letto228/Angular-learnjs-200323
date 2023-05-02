@@ -1,13 +1,16 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
 import {IProduct} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
-import {ActivatedRoute} from '@angular/router';
-import {Observable, map, startWith, switchMap, tap} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable, map, startWith, switchMap, take, tap} from 'rxjs';
 import {AbstractControl, FormControl, ValidationErrors, Validators} from '@angular/forms';
 import {isStringValidator} from '../../shared/validators/is-string.validator';
 import {isStringAsyncValidator} from '../../shared/validators/is-string-async.validator';
 import {BrandsService} from '../../shared/brands/brands.service';
 import {IProductsFilter} from './filter/products-filter.interface';
+import {getFilterFromQuery} from './filter/query-params/get-filter-from-query';
+import {IProductsFilterQueryParams} from './filter/query-params/products-filter-query-params.interface';
+import {getQueryFromFilter} from './filter/query-params/get-query-from-filter';
 
 @Component({
 	selector: 'app-products-list',
@@ -30,8 +33,13 @@ export class ProductsListComponent {
 		}),
 		switchMap(() => this.brandsService.brands$),
 	);
-
-	name = '';
+	readonly initialFilter$ = this.activatedRoute.queryParams.pipe(
+		take(1),
+		map(queryParams => getFilterFromQuery(queryParams as IProductsFilterQueryParams)),
+	);
+	readonly searchName$ = this.activatedRoute.queryParamMap.pipe(
+		map(queryParamMap => queryParamMap.get('name')),
+	);
 
 	// counter = 0;
 
@@ -59,6 +67,7 @@ export class ProductsListComponent {
 		private readonly productsStoreService: ProductsStoreService,
 		private readonly activatedRoute: ActivatedRoute,
 		private readonly brandsService: BrandsService,
+		private readonly router: Router,
 	) {
 		// setTimeout(() => {
 		// 	this.counterFormControl.setValue(300);
@@ -74,8 +83,10 @@ export class ProductsListComponent {
 	}
 
 	onFilterChange(filter: IProductsFilter) {
-		console.log(filter);
-		this.name = filter.name;
+		this.router.navigate([], {
+			relativeTo: this.activatedRoute,
+			queryParams: getQueryFromFilter(filter),
+		});
 	}
 
 	// onCounterChange(counter: number) {
