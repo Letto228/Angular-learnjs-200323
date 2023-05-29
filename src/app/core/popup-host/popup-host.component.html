@@ -1,1 +1,4 @@
-<ng-template [ngTemplateOutlet]="template"></ng-template>
+<div class="popup-wr">
+	<button class="popup__close-btn" (click)="close()">X</button>
+	<ng-template [ngTemplateOutlet]="template$ | async"></ng-template>
+</div>

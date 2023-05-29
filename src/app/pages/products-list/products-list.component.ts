@@ -7,9 +7,12 @@ import {
 	Optional,
 	Self,
 	SkipSelf,
+	TemplateRef,
+	ViewChild,
 } from '@angular/core';
 import {IProduct} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
+import {PopupHostService} from 'src/app/core/popup-host/popup-host.service';
 
 @Component({
 	selector: 'app-products-list',
@@ -25,9 +28,11 @@ import {ProductsStoreService} from '../../shared/products/products-store.service
 })
 export class ProductsListComponent implements OnInit {
 	readonly products$ = this.productsStoreService.products$;
+	@ViewChild('popupTemplate') popupTemplate!: TemplateRef<unknown>;
 
 	constructor(
 		private readonly productsStoreService: ProductsStoreService,
+		private readonly popupHostService: PopupHostService,
 		@Inject('name') @Optional() @Self() private readonly name: string,
 		@Inject('name') @Optional() @SkipSelf() private readonly parentName: string,
 		@Inject('name') @Optional() @Host() @SkipSelf() private readonly hostName: string,
@@ -43,5 +48,9 @@ export class ProductsListComponent implements OnInit {
 
 	trackById(_index: number, item: IProduct): IProduct['_id'] {
 		return item._id;
+	}
+
+	setTemplate() {
+		this.popupHostService.setPopupTemplate(this.popupTemplate);
 	}
 }
