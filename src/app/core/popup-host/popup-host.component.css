@@ -14,3 +14,28 @@
 :host(.empty) {
 	display: none;
 }
+
+.popup-wr {
+	min-width: 30%;
+	min-height: 30%;
+	text-align: center;
+	padding: 20px;
+	background-color: rgb(255, 255, 255);
+	position: relative;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+}
+
+.popup__close-btn {
+	position: absolute;
+	right: 0;
+	top: 0;
+	border: none;
+	cursor: pointer;
+	transition: 0.5s ease;
+}
+
+.popup__close-btn:hover {
+	transform: scale(2);
+	border-radius: 3px;
+}

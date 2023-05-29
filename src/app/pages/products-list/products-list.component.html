@@ -15,6 +15,7 @@
 				*ngFor="let product of productsGroup; trackBy: trackById"
 				class="card"
 				[product]="product"
+				(click)="setTemplate()"
 			></app-card>
 		</div>
 
@@ -43,3 +44,4 @@
 <ng-template #loader>
 	<mat-spinner class="loader"></mat-spinner>
 </ng-template>
+<ng-template #popupTemplate>PopupTemplate TEST</ng-template>

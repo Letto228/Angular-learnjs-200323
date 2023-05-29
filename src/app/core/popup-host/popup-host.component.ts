@@ -9,6 +9,8 @@ import {
 	ViewChild,
 	ViewContainerRef,
 } from '@angular/core';
+import {PopupHostService} from './popup-host.service';
+import {Observable, tap} from 'rxjs';
 
 @Component({
 	selector: 'app-popup-host',
@@ -17,10 +19,20 @@ import {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PopupHostComponent {
-	@Input() template: TemplateRef<unknown> | null = null;
-
 	@HostBinding('class.empty')
-	get isEmpty(): boolean {
-		return !this.template;
+	isEmpty = true;
+
+	constructor(private readonly popupHostService: PopupHostService) {}
+
+	template$: Observable<TemplateRef<unknown> | null> =
+		this.popupHostService.popupTemplate$.pipe(
+			tap(value => {
+				this.isEmpty = !value;
+			}),
+		);
+
+	close() {
+		console.log('close popup');
+		this.popupHostService.clearPopup();
 	}
 }
