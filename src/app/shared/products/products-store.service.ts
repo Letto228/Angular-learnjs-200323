@@ -21,6 +21,8 @@ export class ProductsStoreService {
 	}
 
 	loadProducts(subcategoryId?: string | null) {
+		console.log('Loading products');
+		this.productsStore$.next(null);
 		this.productsApiService.getProducts$(subcategoryId).subscribe(products => {
 			this.productsStore$.next(products);
 		});

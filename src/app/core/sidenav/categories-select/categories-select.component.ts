@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	Input,
+	OnChanges,
+	OnInit,
+} from '@angular/core';
 import {ICategory} from '../../../shared/categories/category.interface';
 
 @Component({
@@ -7,6 +13,10 @@ import {ICategory} from '../../../shared/categories/category.interface';
 	styleUrls: ['./categories-select.component.less'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CategoriesSelectComponent {
+export class CategoriesSelectComponent implements OnChanges {
 	@Input() categories!: ICategory[] | null;
+
+	ngOnChanges(): void {
+		console.log('categories: ', this.categories);
+	}
 }

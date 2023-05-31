@@ -10,7 +10,8 @@ import {
 } from '@angular/core';
 import {IProduct} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {filter, map, switchMap, tap} from 'rxjs';
 
 @Component({
 	selector: 'app-products-list',
@@ -18,19 +19,22 @@ import {Router} from '@angular/router';
 	styleUrls: ['./products-list.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductsListComponent implements OnInit {
-	readonly products$ = this.productsStoreService.products$;
+export class ProductsListComponent {
+	readonly products$ = this.activatedRoute.paramMap.pipe(
+		map(paramsMap => paramsMap.get('subCategoryId')),
+		tap(subCategoryId => {
+			this.productsStoreService.loadProducts(subCategoryId);
+		}),
+		switchMap(() => this.productsStoreService.products$),
+	);
 
 	constructor(
 		private readonly productsStoreService: ProductsStoreService,
+		private readonly activatedRoute: ActivatedRoute,
 		private readonly router: Router,
 		@Inject('name') private readonly name: string,
 	) {
 		console.log(this.name, 'ProductsListComponent');
-	}
-
-	ngOnInit() {
-		this.productsStoreService.loadProducts();
 	}
 
 	trackById(_index: number, item: IProduct): IProduct['_id'] {
