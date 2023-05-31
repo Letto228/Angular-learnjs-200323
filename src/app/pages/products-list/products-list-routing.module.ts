@@ -6,6 +6,11 @@ const routes: Routes = [
 	{
 		path: '',
 		component: ProductsListComponent,
+		// pathMatch: 'full'
+	},
+	{
+		path: ':subCategoryId',
+		component: ProductsListComponent,
 	},
 ];
 
